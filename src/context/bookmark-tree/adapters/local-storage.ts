@@ -9,7 +9,7 @@ import type {
 
 import { BOOKMARK_TREE_ID } from "./config";
 
-export class LocalStorageBasedBookmarkManager extends BookmarkManager {
+export class LocalStorageBookmarkManager extends BookmarkManager {
   constructor() {
     super();
 
@@ -37,5 +37,26 @@ export class LocalStorageBasedBookmarkManager extends BookmarkManager {
     this._tree!.children!.splice(index, 0, newFolder);
 
     return newFolder;
+  }
+
+  async addBookmark({ index, title, url, parentId }: CreateBookmarkProps) {
+    const newBookmark: Bookmark = {
+      id: this.generateId(),
+      index,
+      parentId,
+      title,
+      url,
+    };
+
+    const parentFolder = this._tree!.children!.find(({ id }) => {
+      return parentId === id;
+    });
+
+    if (!parentFolder)
+      throw new Error(`No parent folder with id ${parentId} was found`);
+
+    parentFolder.children!.splice(index, 0, newBookmark);
+
+    return newBookmark;
   }
 }

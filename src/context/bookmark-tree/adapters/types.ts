@@ -11,7 +11,7 @@ export type Folder = Omit<BookmarkTreeNode, "url" | "children"> & {
 export type CreateFolderProps = Required<Pick<Folder, "index" | "title">>;
 
 export type CreateBookmarkProps = Required<
-  Pick<Bookmark, "index" | "title" | "parentId">
+  Pick<Bookmark, "index" | "title" | "parentId" | 'url'>
 >;
 
 export type MoveBookmarkArgs = {
