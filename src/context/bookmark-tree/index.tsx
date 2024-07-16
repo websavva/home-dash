@@ -3,68 +3,57 @@ import {
   type PropsWithChildren,
   useState,
   useEffect,
+  useRef,
 } from "react";
 
-import { useWaitFor } from "@/hooks/use-wait-for";
+import { LocalStorageBookmarkManager, BookmarkManager } from "./manager";
 
-import type { BookmarkTreeContextSchema, BookmarkTreeNode, CreateBookmarkProps, CreateFolderProps } from "./types";
+export type BookmarkManagerContextSchema = Omit<
+  BookmarkManager,
+  "_tree" | "onChange"
+>;
 
-const BOOKMARK_TREE_ID = "__HOME_DASH__";
+export const BookmarkManagerContext =
+  // @ts-expect-error optional value
+  createContext<BookmarkManagerContextSchema>(undefined);
 
-const isDev = import.meta.env.DEV;
-
-export const BookmarkTreeContext = createContext({
-  tree: {},
-  isPending: false,
-  isLoaded: false,
-} as BookmarkTreeContextSchema);
-
-export const BookmarkTreeContextProvider = ({
+export const BookmarkManagerContextProvider = ({
   children,
 }: PropsWithChildren) => {
-  const [isPending, setIsPending] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const bookmarkManagerRef = useRef(new LocalStorageBookmarkManager());
 
-  const [tree, setTree] = useState<null | BookmarkTreeNode>(null);
-
-  const refreshTree = () => {
-    return chrome.bookmarks.get(BOOKMARK_TREE_ID).then(([bookmarkTreeRootNode]) => {
-      setTree(bookmarkTreeRootNode);
-    });
-  };
+  const [bookmarkTree, setBookmarkTree] = useState(
+    bookmarkManagerRef.current.tree
+  );
 
   useEffect(() => {
-    refreshTree().then(() => {
-      setIsLoaded(true)
+    bookmarkManagerRef.current.onChange((updatedTree) => {
+      setBookmarkTree(updatedTree);
     });
   }, []);
 
-  
+  const {
+    addBookmark,
+    addFolder,
+    moveBookmark,
+    moveFolder,
+    removeBookmark,
+    removeFolder,
+  } = bookmarkManagerRef.current;
 
-  const bookmarkTreeContext: BookmarkTreeContextSchema = {
-    tree: tree!,
-
-    isLoaded,
-    isPending,
-
-    addBookmark: useWaitFor(setIsPending, async (bookmarkProps: CreateBookmarkProps) =>  {
-      const newBookmark = await chrome.bookmarks.create(bookmarkProps);
-
-      await refreshTree();
-      
-      return newBookmark
-    }),
-
-    addFolder: useWaitFor(setIsPending, async (folderProps: CreateFolderProps) => {
-      const newFolder = await chrome.bookmarks.create(folderProps);
-
-      await refreshTree();
-
-      return newFolder
-    })
-  }
+  const bookmarkManagerContext = {
+    tree: bookmarkTree,
+    addBookmark,
+    addFolder,
+    moveBookmark,
+    moveFolder,
+    removeBookmark,
+    removeFolder,
+  };
 
   return (
-    <BookmarkTreeContext.Provider>{children}</BookmarkTreeContext.Provider>
+    <BookmarkManagerContext.Provider value={bookmarkManagerContext}>
+      {children}
+    </BookmarkManagerContext.Provider>
   );
 };
