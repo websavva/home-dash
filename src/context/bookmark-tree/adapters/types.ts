@@ -8,13 +8,15 @@ export type Folder = Omit<BookmarkTreeNode, "url" | "children"> & {
   children: Array<Bookmark>;
 };
 
-export type CreateFolderProps = Required<Pick<Folder, "index" | "title">>;
-
 export type CreateBookmarkProps = Required<
-  Pick<Bookmark, "index" | "title" | "parentId" | 'url'>
+  Pick<Bookmark, "title" | "parentId" | "url">
 >;
 
 export type MoveBookmarkArgs = {
-  parentId: string;
+  parentId?: string;
   index: number;
 };
+
+export interface OnBookmarkTreeChangeCallback {
+  (updatedTree: BookmarkTreeNode): any;
+}

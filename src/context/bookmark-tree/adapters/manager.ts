@@ -3,29 +3,37 @@ import type {
   Bookmark,
   BookmarkTreeNode,
   CreateBookmarkProps,
-  CreateFolderProps,
   MoveBookmarkArgs,
+  OnBookmarkTreeChangeCallback,
 } from "./types";
 
 export abstract class BookmarkManager {
-  public _tree: BookmarkTreeNode | null = null;
+  public _tree: BookmarkTreeNode;
+
+  constructor() {
+    this._tree = { title: "root" } as BookmarkTreeNode;
+  }
 
   get tree() {
     return this._tree;
   }
 
-  abstract addFolder(folderProps: CreateFolderProps): Promise<Folder>;
+  public abstract addFolder(title: string): Promise<Folder>;
 
-  abstract addBookmark(bookmarkProps: CreateBookmarkProps): Promise<Bookmark>;
+  public abstract addBookmark(
+    bookmarkProps: CreateBookmarkProps
+  ): Promise<Bookmark>;
 
-  abstract removeFolder(folderId: string): Promise<boolean>;
+  public abstract removeFolder(folderId: string): Promise<boolean>;
 
-  abstract removeBookmark(bookmarkId: string): Promise<boolean>;
+  public abstract removeBookmark(bookmarkId: string): Promise<boolean>;
 
-  abstract moveFolder(folderId: string, index: number): Promise<boolean>;
+  public abstract moveFolder(folderId: string, index: number): Promise<boolean>;
 
-  abstract moveBookmark(
-    folderId: string,
+  public abstract moveBookmark(
+    bookmarkId: string,
     args: MoveBookmarkArgs
   ): Promise<boolean>;
+
+  public abstract onChange(callback: OnBookmarkTreeChangeCallback): () => void;
 }
