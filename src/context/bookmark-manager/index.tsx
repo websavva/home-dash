@@ -4,13 +4,13 @@ import {
   useState,
   useEffect,
   useRef,
-} from "react";
+} from 'react';
 
-import { LocalStorageBookmarkManager, BookmarkManager } from "./manager";
+import { LocalStorageBookmarkManager, BookmarkManager } from './manager';
 
 export type BookmarkManagerContextSchema = Omit<
   BookmarkManager,
-  "_tree" | "onChange"
+  '_tree' | 'onChange'
 >;
 
 export const BookmarkManagerContext =
@@ -23,7 +23,7 @@ export const BookmarkManagerContextProvider = ({
   const bookmarkManagerRef = useRef(new LocalStorageBookmarkManager());
 
   const [bookmarkTree, setBookmarkTree] = useState(
-    bookmarkManagerRef.current.tree
+    bookmarkManagerRef.current.tree,
   );
 
   useEffect(() => {

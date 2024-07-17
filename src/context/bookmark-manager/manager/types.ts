@@ -1,15 +1,15 @@
 export type BookmarkTreeNode = chrome.bookmarks.BookmarkTreeNode;
 
-export type Bookmark = Omit<BookmarkTreeNode, "url" | "children"> & {
+export type Bookmark = Omit<BookmarkTreeNode, 'url' | 'children'> & {
   url: string;
 };
 
-export type Folder = Omit<BookmarkTreeNode, "url" | "children"> & {
+export type Folder = Omit<BookmarkTreeNode, 'url' | 'children'> & {
   children: Array<Bookmark>;
 };
 
 export type CreateBookmarkProps = Required<
-  Pick<Bookmark, "title" | "parentId" | "url">
+  Pick<Bookmark, 'title' | 'parentId' | 'url'>
 >;
 
 export type MoveBookmarkArgs = {

@@ -1,4 +1,4 @@
-import { BookmarkManager } from "./manager";
+import { BookmarkManager } from './manager';
 import type {
   CreateBookmarkProps,
   Bookmark,
@@ -6,9 +6,9 @@ import type {
   BookmarkTreeNode,
   OnBookmarkTreeChangeCallback,
   MoveBookmarkArgs,
-} from "./types";
+} from './types';
 
-import { BOOKMARK_TREE_ID } from "./config";
+import { BOOKMARK_TREE_ID } from './config';
 
 export class LocalStorageBookmarkManager extends BookmarkManager {
   constructor() {
@@ -35,7 +35,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     return {
       id: BOOKMARK_TREE_ID,
       children: [],
-      title: "__ROOT__",
+      title: '__ROOT__',
     };
   }
 
@@ -60,13 +60,13 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
   };
 
   public setUpLocalStorageListener() {
-    window.addEventListener("storage", this.onLocalStorageHandler);
+    window.addEventListener('storage', this.onLocalStorageHandler);
 
     this.isListenerSetUp = true;
   }
 
   public removeLocalStorageListener() {
-    window.removeEventListener("storage", this.onLocalStorageHandler);
+    window.removeEventListener('storage', this.onLocalStorageHandler);
 
     this.isListenerSetUp = false;
   }
@@ -124,7 +124,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
   removeFolder = async (folderId: string): Promise<boolean> => {
     this.tree!.children = this.tree!.children!.filter(
-      ({ id }) => folderId !== id
+      ({ id }) => folderId !== id,
     );
 
     this.updateTreeInLocalStorage();
@@ -135,7 +135,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
   removeBookmark = async (bookmarkId: string): Promise<boolean> => {
     for (const folder of this.tree!.children!) {
       const bookmarkIndex = folder.children!.findIndex(
-        ({ id }) => bookmarkId === id
+        ({ id }) => bookmarkId === id,
       );
 
       if (~bookmarkIndex) {
@@ -159,7 +159,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
   private insertItemIntoList(
     list: BookmarkTreeNode[],
     item: BookmarkTreeNode,
-    toIndex: number
+    toIndex: number,
   ) {
     list.splice(toIndex, 0, item);
 
@@ -175,7 +175,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
   private moveItemWithinList(
     list: BookmarkTreeNode[],
     fromIndex: number,
-    toIndex: number
+    toIndex: number,
   ) {
     const item = list[fromIndex];
 
@@ -186,7 +186,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
   public moveFolder = async (folderId: string, toIndex: number) => {
     const fromIndex = this.tree.children!.findIndex(
-      ({ id }) => id === folderId
+      ({ id }) => id === folderId,
     );
 
     if (!~fromIndex)
@@ -201,7 +201,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
   public moveBookmark = async (
     bookmarkId: string,
-    { parentId: toFolderId, index: toIndex }: MoveBookmarkArgs
+    { parentId: toFolderId, index: toIndex }: MoveBookmarkArgs,
   ) => {
     let fromFolder: BookmarkTreeNode | undefined;
     let fromIndex: number;
@@ -222,7 +222,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
     if (!fromFolder)
       throw new Error(
-        `No folder with for a bookmark with id ${bookmarkId} was found !`
+        `No folder with for a bookmark with id ${bookmarkId} was found !`,
       );
 
     if (!toFolderId) {
@@ -252,7 +252,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
     return () => {
       this.onChangeCallbacks = this.onChangeCallbacks.filter(
-        (currentCallback) => currentCallback !== callback
+        (currentCallback) => currentCallback !== callback,
       );
 
       if (!this.onChangeCallbacks.length) this.removeLocalStorageListener();
