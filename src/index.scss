@@ -1,3 +1,16 @@
+@use 'sass:map';
+
 html {
   font-size: 62.5%;
+  color: map.get(base.$theme, 'color-primary');
+  font-family: 'Segoe UI', 'Helvetica', sans-serif;
+  background: map.get(base.$theme, 'bg-secondary');
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }

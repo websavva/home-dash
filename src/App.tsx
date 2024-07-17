@@ -1,8 +1,12 @@
+import { BookmarkManagerContextProvider } from '@/context/bookmark-manager';
+
+import HomePage from '@/components/HomePage';
+
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <BookmarkManagerContextProvider>
+      <HomePage />
+    </BookmarkManagerContextProvider>
   );
 }
 

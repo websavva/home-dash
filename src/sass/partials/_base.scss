@@ -1,0 +1,9 @@
+@use 'sass:map';
+
+$theme: (
+  'bg-primary': #545454,
+  'bg-secondary': #2c2c2c,
+  'text-primary': #dbdbdb,
+  'text-secondary': #ffff,
+  'text-active': #ffff,
+);
