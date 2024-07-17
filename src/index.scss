@@ -5,6 +5,13 @@ html {
   color: map.get(base.$theme, 'color-primary');
   font-family: 'Segoe UI', 'Helvetica', sans-serif;
   background: map.get(base.$theme, 'bg-secondary');
+  min-height: 100vh;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 *,

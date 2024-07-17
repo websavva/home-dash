@@ -13,8 +13,10 @@ function HomePage() {
   const folders = children as Folder[];
 
   return (
-    <div>
-      <main className={classes['home-page']}>
+    <div className={classes['home-page']}>
+      <aside className={classes['home-page__sidebar']} />
+
+      <main className={classes['home-page__main']}>
         {folders.map((folder) => {
           return <FolderCard folder={folder} />;
         })}

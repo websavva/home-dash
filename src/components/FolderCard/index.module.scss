@@ -7,6 +7,7 @@
   border-radius: 8px;
   display: grid;
   flex-direction: column;
+  box-shadow: 0px 2px 3px map.get(base.$theme, 'folder-card-shadow-color');
 
   &__head {
     margin-bottom: 1.5rem;
