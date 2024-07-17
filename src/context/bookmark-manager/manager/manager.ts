@@ -8,14 +8,10 @@ import type {
 } from "./types";
 
 export abstract class BookmarkManager {
-  public _tree: BookmarkTreeNode;
+  public tree: BookmarkTreeNode;
 
   constructor() {
-    this._tree = { title: "root" } as BookmarkTreeNode;
-  }
-
-  get tree() {
-    return this._tree;
+    this.tree = { title: "root" } as BookmarkTreeNode;
   }
 
   public abstract addFolder(title: string): Promise<Folder>;
