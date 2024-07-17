@@ -1,5 +1,3 @@
-@use 'sass:map';
-
 html {
   font-size: 62.5%;
   color: map.get(base.$theme, 'color-primary');
@@ -20,4 +18,10 @@ body,
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
 }

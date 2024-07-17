@@ -2,6 +2,7 @@ import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 import type { Folder } from '@/context/bookmark-manager/manager';
 
 import FolderCard from '../FolderCard';
+import Layout from '../Layout';
 
 import classes from './index.module.scss';
 
@@ -13,15 +14,13 @@ function HomePage() {
   const folders = children as Folder[];
 
   return (
-    <div className={classes['home-page']}>
-      <aside className={classes['home-page__sidebar']} />
-
-      <main className={classes['home-page__main']}>
+    <Layout>
+      <div className={classes['home-page__list']}>
         {folders.map((folder) => {
           return <FolderCard folder={folder} />;
         })}
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 }
 

@@ -1,5 +1,4 @@
 import path from 'path';
-import { readdirSync } from 'fs';
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -23,7 +22,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: "@use 'base';",
+        additionalData: ['sass:map', 'base']
+          .map((partial) => `@use '${partial}';`)
+          .join('\n'),
         includePaths: [sassPartialsSrc],
       },
     },

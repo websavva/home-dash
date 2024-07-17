@@ -1,19 +1,8 @@
-@use 'sass:map';
-
 .home-page {
-  display: grid;
-  grid-template-columns: 7.5rem 1fr;
-  height: 100%;
-
-  &__sidebar {
-    height: 100%;
-    background: map.get(base.$theme, 'bg-sidebar');  
-  }
-  
-  &__main {
+  &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2.5rem;
-    padding: 2rem 1.5rem 2rem 2rem;
+    padding: 2rem 1.5rem 2rem 3rem;
   }
 }

@@ -1,0 +1,38 @@
+.layout {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  height: 100%;
+
+  &__sidebar {
+    height: 100%;
+    background: map.get(base.$theme, 'bg-sidebar');
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__btn {
+      cursor: default;
+
+      svg {
+        width: 2.8rem;
+        height: 2.8rem;
+        color: map.get(base.$theme, 'text-primary');
+      }
+
+      & + & {
+        margin-top: 2rem;
+      }
+
+      &--clickable {
+        cursor: pointer;
+
+        transition: opacity 0.1s ease-out;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

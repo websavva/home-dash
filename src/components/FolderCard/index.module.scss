@@ -1,21 +1,19 @@
-@use 'sass:map';
-
 .folder-card {
   height: 37.5rem;
   padding: 1rem 2rem;
   background: map.get(base.$theme, 'bg-primary');
   border-radius: 8px;
-  display: grid;
+  display: flex;
   flex-direction: column;
   box-shadow: 0px 2px 3px map.get(base.$theme, 'folder-card-shadow-color');
 
   &__head {
     margin-bottom: 1.5rem;
+    flex: 0 0 auto;
 
     &__title {
       color: map.get(base.$theme, 'text-secondary');
-      font-size: 2.5rem;
-      letter-spacing: 2px;
+      font-size: 2.2rem;
     }
   }
 
