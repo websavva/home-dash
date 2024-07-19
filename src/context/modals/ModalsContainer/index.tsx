@@ -2,30 +2,34 @@ import { PropsWithChildren, useContext } from 'react';
 
 import { ModalsContextProvider, ModalsContext } from '../Provider';
 
+import Modal from './Modal';
+
 function ModalsContainerList() {
   const { openedModals, remove } = useContext(ModalsContext);
 
   return (
     <div>
       {openedModals.map(({ id, resolve, Component, props }) => {
+        const onSubmit = async (payload: any) => {
+          resolve(payload);
+
+          await props?.submit?.(payload);
+
+          remove(id);
+        };
+
+        const onClose = async () => {
+          resolve(null);
+
+          await props?.close?.();
+
+          remove(id);
+        };
+
         return (
-          <Component
-            key={id}
-            onSubmit={async (payload) => {
-              resolve(payload);
-
-              await props.onSubmit(payload);
-
-              remove(id);
-            }}
-            onClose={async () => {
-              resolve(null);
-
-              await props.onClose?.();
-
-              remove(id);
-            }}
-          />
+          <Modal key={id} onClose={onClose}>
+            <Component {...props} submit={onSubmit} close={onClose} />
+          </Modal>
         );
       })}
     </div>
@@ -35,11 +39,9 @@ function ModalsContainerList() {
 function ModalsContainer({ children }: PropsWithChildren) {
   return (
     <ModalsContextProvider>
-      <div>
-        {children}
+      {children}
 
-        <ModalsContainerList />
-      </div>
+      <ModalsContainerList />
     </ModalsContextProvider>
   );
 }

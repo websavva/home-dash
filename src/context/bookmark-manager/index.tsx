@@ -27,7 +27,7 @@ export const BookmarkManagerContextProvider = ({
   );
 
   useEffect(() => {
-    bookmarkManagerRef.current.onChange((updatedTree) => {
+    return bookmarkManagerRef.current.onChange((updatedTree) => {
       setBookmarkTree(updatedTree);
     });
   }, []);

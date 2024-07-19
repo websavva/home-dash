@@ -3,13 +3,21 @@ import { clsx } from 'clsx';
 
 import { LayoutDashboardIcon, CopyPlusIcon } from 'lucide-react';
 
+import { useModals } from '@/hooks/use-modals';
+import AddFolderModal from '@/components/Modals/AddFolderModal';
+
 import classes from './index.module.scss';
+import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 
 function Layout({
   children,
   className,
   ...attrs
 }: HTMLAttributes<HTMLDivElement>) {
+  const { addFolder } = useBookmarkManager();
+
+  const { open: openModal } = useModals();
+
   const sidebarButtons = [
     {
       id: 'logo',
@@ -19,7 +27,13 @@ function Layout({
     {
       id: 'new-card-addition',
       Icon: CopyPlusIcon,
-      onClick: () => {},
+      onClick: async () => {
+        const form = await openModal(AddFolderModal);
+
+        if (!form) return;
+
+        await addFolder(form.title);
+      },
     },
   ];
 

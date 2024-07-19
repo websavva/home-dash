@@ -21,7 +21,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     if (!parsedTree) {
       parsedTree = this.createBookmarkTree();
 
-      this.updateTreeInLocalStorage(parsedTree);
+      this.updateTree(parsedTree);
     }
 
     this.tree = parsedTree;
@@ -47,8 +47,12 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     });
   }
 
-  private updateTreeInLocalStorage(updatedTree: BookmarkTreeNode = this.tree) {
-    localStorage.setItem(BOOKMARK_TREE_ID, JSON.stringify(updatedTree));
+  private updateTree(updatedTree: BookmarkTreeNode = this.tree) {
+    const copiedUpdatedTree = structuredClone(updatedTree);
+
+    localStorage.setItem(BOOKMARK_TREE_ID, JSON.stringify(copiedUpdatedTree));
+
+    this.runOnChangeCallbacks(copiedUpdatedTree);
   }
 
   private onLocalStorageHandler = ({ newValue, key }: StorageEvent) => {
@@ -93,7 +97,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
     this.tree!.children!.push(newFolder);
 
-    this.updateTreeInLocalStorage();
+    this.updateTree();
 
     return newFolder;
   };
@@ -117,7 +121,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
     parentFolder.children!.push(newBookmark);
 
-    this.updateTreeInLocalStorage();
+    this.updateTree();
 
     return newBookmark;
   };
@@ -127,7 +131,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
       ({ id }) => folderId !== id,
     );
 
-    this.updateTreeInLocalStorage();
+    this.updateTree();
 
     return true;
   };
@@ -145,7 +149,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
           bookmark.index = index;
         });
 
-        this.updateTreeInLocalStorage();
+        this.updateTree();
       }
     }
 
@@ -194,7 +198,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
     this.moveItemWithinList(this.tree.children!, fromIndex, toIndex);
 
-    this.updateTreeInLocalStorage();
+    this.updateTree();
 
     return true;
   };
@@ -240,7 +244,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
       this.insertItemIntoList(toFolder.children!, bookmark, toIndex);
     }
 
-    this.updateTreeInLocalStorage();
+    this.updateTree();
 
     return true;
   };
