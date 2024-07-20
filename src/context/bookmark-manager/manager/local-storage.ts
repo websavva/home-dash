@@ -60,6 +60,8 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
 
     if (key !== BOOKMARK_TREE_ID || !parsedUpdatedTree) return;
 
+    this.tree = parsedUpdatedTree;
+
     this.runOnChangeCallbacks(parsedUpdatedTree);
   };
 

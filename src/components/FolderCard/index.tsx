@@ -6,6 +6,7 @@ import type { Folder } from '@/context/bookmark-manager/manager';
 import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
 
 import classes from './index.module.scss';
+import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 
 export interface FolderCardProps extends HTMLAttributes<HTMLDivElement> {
   folder: Folder;
@@ -19,16 +20,21 @@ function FolderCard({
 }: FolderCardProps) {
   const {
     title,
+    id: folderId,
 
     children: bookmarks = [],
   } = folder;
+
+  const { removeFolder } = useBookmarkManager();
 
   const actions: ButtonMoreAction[] = [
     {
       id: 'remove-folder',
       Icon: CopyXIcon,
       label: 'Remove',
-      onClick: () => {},
+      onClick: () => {
+        removeFolder(folderId);
+      },
     },
     {
       id: 'add-bookmark',
