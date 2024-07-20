@@ -1,4 +1,4 @@
-import path from 'path';
+import path, { join } from 'path';
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -22,9 +22,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: ['sass:map', 'context']
-          .map((partial) => `@use '${partial}';`)
-          .join('\n'),
+        additionalData: ["@use 'sass:map';", "@use 'context' as *;"].join(
+          '\n',
+        ),
         includePaths: [sassPartialsSrc],
       },
     },

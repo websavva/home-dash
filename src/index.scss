@@ -1,8 +1,8 @@
 html {
   font-size: 62.5%;
-  color: map.get(context.$theme, 'text-primary');
+  color: map.get($theme, 'text-primary');
   font-family: 'Segoe UI', 'Helvetica', sans-serif;
-  background: map.get(context.$theme, 'bg-secondary');
+  background: map.get($theme, 'bg-secondary');
   min-height: 100vh;
 }
 
@@ -31,4 +31,8 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+svg {
+  fill: currenColor;
 }

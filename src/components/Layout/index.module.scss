@@ -5,19 +5,19 @@
 
   &__sidebar {
     height: 100%;
-    background: map.get(context.$theme, 'bg-sidebar');
+    background: map.get($theme, 'bg-sidebar');
     padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     &__btn {
+      @include square-size($size: 2.8rem);
       cursor: default;
+      color: map.get($theme, 'text-primary');
 
       svg {
-        width: 2.8rem;
-        height: 2.8rem;
-        color: map.get(context.$theme, 'text-primary');
+        @include square-size($size: 100%);
       }
 
       & + & {

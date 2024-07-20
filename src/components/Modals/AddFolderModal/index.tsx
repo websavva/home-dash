@@ -31,6 +31,8 @@ function AddFolderModal({ submit, close }: ModalProps<AddFolderModalForm>) {
             setTitle(newTitle);
           }}
           placeholder="Enter title..."
+          type="text"
+          minLength={1}
         />
 
         <Button type="submit" className={classes['add-folder-modal__btn']}>

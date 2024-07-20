@@ -47,7 +47,7 @@
   &__window {
     justify-self: center;
     align-self: center;
-    background: map.get(context.$theme, 'bg-modal');
+    background: map.get($theme, 'bg-modal');
     padding: 2rem;
     border-radius: 5px;
     animation: slide-up 0.2s ease-out;

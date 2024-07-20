@@ -1,6 +1,6 @@
 .button {
-    background: map.get(context.$theme, 'bg-secondary');
-    color: map.get(context.$theme, 'text-primary');
+    background: map.get($theme, 'bg-secondary');
+    color: map.get($theme, 'text-primary');
     padding: .7rem 2.5rem;
     border-radius: 5px;
     display: block;

@@ -1,14 +1,21 @@
 @use 'sass:map';
 
+$transition: .2s ease-out;
+
 $theme: (
   'bg-primary': #545454,
   'bg-secondary': #333333,
   'text-primary': #dbdbdb,
   'text-secondary': #ffff,
   'text-active': #ffff,
-  
+
   'folder-card-shadow-color': #00000047,
   'bg-sidebar': #252525,
 
-  'bg-modal': #666666
+  'bg-modal': #666666,
 );
+
+@mixin square-size($size) {
+  width: $size;
+  height: $size;
+}
