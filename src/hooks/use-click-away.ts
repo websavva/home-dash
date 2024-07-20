@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 
-export const useClickAway = (callback: () => any) => {
-  const targetElementRef = useRef<Element | null>(null);
+export const useClickAway = <E extends Element>(callback: () => any) => {
+  const targetElementRef = useRef<E | null>(null);
 
   useEffect(() => {
     const onClick = ({ target }: MouseEvent) => {
@@ -17,7 +17,7 @@ export const useClickAway = (callback: () => any) => {
     document.addEventListener('click', onClick);
 
     return () => document.removeEventListener('click', onClick);
-  });
+  }, [callback]);
 
   return targetElementRef;
 };

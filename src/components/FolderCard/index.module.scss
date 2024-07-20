@@ -6,14 +6,33 @@
   background: map.get($theme, 'bg-primary');
   display: flex;
   flex-direction: column;
+  
+  $root: &;
 
   &__head {
     margin-bottom: 1.5rem;
     flex: 0 0 auto;
+    display: flex;
+    align-items: center;
 
     &__title {
       color: map.get($theme, 'text-secondary');
       font-size: 2.2rem;
+      margin-right: 1rem;
+    }
+
+    
+    &__btn {
+      margin-left: auto;
+      transition: opacity $transition;
+      
+      #{$root}:not(:hover) &:not(:has([data-button-more-actions])) {
+        opacity: 0;
+      }
+
+      #{$root}:hover & {
+        opacity: 1;
+      }
     }
   }
 

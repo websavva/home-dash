@@ -1,0 +1,43 @@
+.button-more {
+  position: relative;
+
+  &__activator {
+    svg {
+      height: 2rem;
+    }
+  }
+
+  &__actions {
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background: map.get($theme, 'bg-secondary');
+    border-radius: 5px;
+    z-index: 1;
+    border: 2px solid map.get($theme, 'bg-secondary');
+    overflow: hidden;
+
+    &__item {
+      cursor: pointer;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+
+      & + & {
+        border-top: 1px solid map.get($theme, 'bg-primary');
+      }
+
+      svg {
+        margin-right: 2rem;
+        @include square-size($size: 1.2em);
+      }
+
+      &:hover {
+        background: map.get($theme, 'bg-primary');
+      }
+    }
+  }
+}
