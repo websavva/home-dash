@@ -9,15 +9,19 @@ export interface ModalBaseProps<Payload = any> {
   close: CloseHandler;
 }
 
-export type ModalProps<
-  Payload = any,
-  ExtraProps extends Record<string, any> = Record<string, any>,
-> = ModalBaseProps<Payload> & ExtraProps;
+export type ModalProps<Payload = any, ExtraProps = void> =
+  ExtraProps extends Record<string, any>
+    ? ModalBaseProps<Payload> & ExtraProps
+    : ModalBaseProps<Payload>;
 
 export type PartialModalProps<
   Payload = any,
-  ExtraProps extends Record<string, any> = Record<string, any>,
-> = Partial<ModalBaseProps<Payload>> & ExtraProps;
+  ExtraProps = void,
+  PartialBaseProps = Partial<ModalBaseProps<Payload>>,
+> =
+  ExtraProps extends Record<string, any>
+    ? PartialBaseProps & ExtraProps
+    : PartialBaseProps;
 
 export type ModalComponent<P = any> = (props: ModalProps<P>) => JSX.Element;
 

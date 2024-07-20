@@ -1,3 +1,10 @@
 .add-folder-modal {
-    min-width: 500px;
+    min-width: 30rem;
+    display: flex;
+    flex-direction: column;
+
+    &__btn {
+        align-self: flex-start;
+        margin-top: 1.8rem;
+    }
 }

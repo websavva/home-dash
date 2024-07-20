@@ -1,5 +1,5 @@
 import { BookmarkManagerContextProvider } from '@/context/bookmark-manager';
-import ModalsContainer from './context/modals/ModalsContainer';
+import ModalsContainer from './components/Modals/ModalsContainer';
 
 import Layout from '@/components/Layout';
 import HomePage from '@/components/HomePage';

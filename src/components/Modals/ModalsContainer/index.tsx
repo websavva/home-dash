@@ -1,8 +1,9 @@
 import { PropsWithChildren, useContext } from 'react';
 
-import { ModalsContextProvider, ModalsContext } from '../Provider';
-
-import Modal from './Modal';
+import {
+  ModalsContextProvider,
+  ModalsContext,
+} from '../../../context/modals/Provider';
 
 function ModalsContainerList() {
   const { openedModals, remove } = useContext(ModalsContext);
@@ -27,9 +28,7 @@ function ModalsContainerList() {
         };
 
         return (
-          <Modal key={id} onClose={onClose}>
-            <Component {...props} submit={onSubmit} close={onClose} />
-          </Modal>
+          <Component {...props} key={id} submit={onSubmit} close={onClose} />
         );
       })}
     </div>

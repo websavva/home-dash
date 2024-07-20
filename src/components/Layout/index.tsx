@@ -28,7 +28,9 @@ function Layout({
       id: 'new-card-addition',
       Icon: CopyPlusIcon,
       onClick: async () => {
-        const form = await openModal(AddFolderModal);
+        const form = await openModal(AddFolderModal, {
+          title: 'Add New Card',
+        });
 
         if (!form) return;
 

@@ -1,0 +1,16 @@
+.input {
+    background: none;
+    appearance: none;
+    border: none;
+    border-bottom: 1px solid map.get(context.$theme, 'text-primary');
+    padding-bottom: .7rem;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-input-placeholder {
+        color: inherit;
+        opacity: .5;
+    }
+}

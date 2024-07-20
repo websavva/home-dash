@@ -22,7 +22,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: ['sass:map', 'base']
+        additionalData: ['sass:map', 'context']
           .map((partial) => `@use '${partial}';`)
           .join('\n'),
         includePaths: [sassPartialsSrc],

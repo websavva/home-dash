@@ -11,7 +11,7 @@
 @keyframes slide-up {
   from {
     opacity: 0.5;
-    transform: translateY(2rem);
+    transform: translateY(1.5rem);
   }
 
   to {
@@ -38,7 +38,7 @@
   }
 
   &__overlay {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
     animation: appear 0.2s ease-out;
@@ -47,9 +47,31 @@
   &__window {
     justify-self: center;
     align-self: center;
-    background: white;
-    padding: 1rem;
+    background: map.get(context.$theme, 'bg-modal');
+    padding: 2rem;
     border-radius: 5px;
     animation: slide-up 0.2s ease-out;
+    position: relative;
+
+    &__head {
+      display: flex;
+      margin-bottom: 2.5rem;
+
+      &__title {
+        font-size: 2rem;
+        margin-right: 2rem;
+      }
+
+      &__close {
+        margin-left: auto;
+
+        transform: translateY(-.5rem);
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
   }
 }

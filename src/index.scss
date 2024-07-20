@@ -1,8 +1,8 @@
 html {
   font-size: 62.5%;
-  color: map.get(base.$theme, 'color-primary');
+  color: map.get(context.$theme, 'text-primary');
   font-family: 'Segoe UI', 'Helvetica', sans-serif;
-  background: map.get(base.$theme, 'bg-secondary');
+  background: map.get(context.$theme, 'bg-secondary');
   min-height: 100vh;
 }
 
@@ -18,10 +18,17 @@ body,
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+body {
+  font-size: 1.6rem;
 }
 
 button {
   background: none;
   border: none;
   outline: none;
+  cursor: pointer;
 }
