@@ -32,6 +32,7 @@ function AddFolderModal({ submit, close }: ModalProps<AddFolderModalForm>) {
           }}
           placeholder="Enter title..."
           type="text"
+          required
           minLength={1}
         />
 
