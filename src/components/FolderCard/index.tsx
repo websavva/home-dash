@@ -4,10 +4,9 @@ import { CopyXIcon, BookmarkPlusIcon, EditIcon } from 'lucide-react';
 
 import type { Folder } from '@/context/bookmark-manager/manager';
 import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
-import { useOnEditFolder } from '@/hooks/use-on-edit-folder';
+import { useFolderHandlers } from '@/hooks/use-folder-handlers';
 
 import classes from './index.module.scss';
-import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 
 export interface FolderCardProps extends HTMLAttributes<HTMLDivElement> {
   folder: Folder;
@@ -21,18 +20,15 @@ function FolderCard({
 }: FolderCardProps) {
   const {
     title,
-    id: folderId,
 
     children: bookmarks = [],
   } = folder;
 
-  const { removeFolder } = useBookmarkManager();
+  const folderHandlers = useFolderHandlers();
 
-  const onEdit = useOnEditFolder(folder);
+  const onRemove = () => folderHandlers.onRemove(folder);
 
-  const onRemove = () => {
-    removeFolder(folderId);
-  };
+  const onEdit = () => folderHandlers.onEdit(folder);
 
   const actions: ButtonMoreAction[] = [
     {

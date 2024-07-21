@@ -1,9 +1,8 @@
 import type { HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
-
 import { LayoutDashboardIcon, CopyPlusIcon } from 'lucide-react';
 
-import { useOnAddFolder } from '@/hooks/use-on-add-folder';
+import { useFolderHandlers } from '@/hooks/use-folder-handlers';
 
 import classes from './index.module.scss';
 
@@ -12,7 +11,7 @@ function Layout({
   className,
   ...attrs
 }: HTMLAttributes<HTMLDivElement>) {
-  const onAddFolder = useOnAddFolder();
+  const { onAdd: onAddFolder } = useFolderHandlers();
 
   const sidebarButtons = [
     {

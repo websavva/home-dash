@@ -2,14 +2,14 @@ import type { HTMLAttributes } from 'react';
 import { CopyPlusIcon } from 'lucide-react';
 import { clsx } from 'clsx';
 
-import { useOnAddFolder } from '@/hooks/use-on-add-folder';
+import { useFolderHandlers } from '@/hooks/use-folder-handlers';
 
 import baseClasses from '../index.module.scss';
 
 import classes from './index.module.scss';
 
 function FolderCardPlaceholder(props: HTMLAttributes<HTMLDivElement>) {
-  const onAddFolder = useOnAddFolder();
+  const { onAdd } = useFolderHandlers();
 
   return (
     <div
@@ -19,7 +19,7 @@ function FolderCardPlaceholder(props: HTMLAttributes<HTMLDivElement>) {
         classes['folder-card-placeholder'],
         props.className,
       )}
-      onClick={onAddFolder}
+      onClick={onAdd}
     >
       <CopyPlusIcon />
     </div>
