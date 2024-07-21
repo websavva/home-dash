@@ -17,7 +17,7 @@ export interface FolderModalExtraProps {
   buttonLabel?: string;
 }
 
-function AddFolderModal({
+function FolderModal({
   submit,
   close,
   initialTitle = '',
@@ -28,7 +28,7 @@ function AddFolderModal({
   return (
     <Modal onClose={close} title="Add New Card">
       <form
-        className={classes['add-folder-modal']}
+        className={classes['folder-modal']}
         onSubmit={(e) => {
           e.preventDefault();
 
@@ -46,7 +46,7 @@ function AddFolderModal({
           minLength={1}
         />
 
-        <Button type="submit" className={classes['add-folder-modal__btn']}>
+        <Button type="submit" className={classes['folder-modal__btn']}>
           {buttonLabel}
         </Button>
       </form>
@@ -54,4 +54,4 @@ function AddFolderModal({
   );
 }
 
-export default AddFolderModal;
+export default FolderModal;

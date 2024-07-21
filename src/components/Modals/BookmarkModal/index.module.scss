@@ -1,0 +1,16 @@
+.bookmark-modal {
+  min-width: 40rem;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    & + & {
+      margin-top: 1.25rem;
+    }
+  }
+
+  &__btn {
+    align-self: flex-start;
+    margin-top: 1.8rem;
+  }
+}
