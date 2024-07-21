@@ -39,6 +39,7 @@ export const BookmarkManagerContextProvider = ({
     moveFolder,
     removeBookmark,
     removeFolder,
+    updateFolder,
   } = bookmarkManagerRef.current;
 
   const bookmarkManagerContext = {
@@ -49,6 +50,7 @@ export const BookmarkManagerContextProvider = ({
     moveFolder,
     removeBookmark,
     removeFolder,
+    updateFolder,
   };
 
   return (

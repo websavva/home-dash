@@ -1,15 +1,15 @@
 import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 import { useModals } from '@/hooks/use-modals';
 
-import AddFolderModal from '@/components/Modals/AddFolderModal';
+import FolderModal from '@/components/Modals/FolderModal';
 
-export const useOnAddNewCard = () => {
+export const useOnAddFolder = () => {
   const { addFolder } = useBookmarkManager();
 
   const { open: openModal } = useModals();
 
   return async () => {
-    const form = await openModal(AddFolderModal);
+    const form = await openModal(FolderModal);
 
     const trimmedTitle = form?.title?.trim();
 

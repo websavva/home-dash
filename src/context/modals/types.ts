@@ -23,11 +23,13 @@ export type PartialModalProps<
     ? PartialBaseProps & ExtraProps
     : PartialBaseProps;
 
-export type ModalComponent<P = any> = (props: ModalProps<P>) => JSX.Element;
+export type ModalComponent<P = any, E = void> = (
+  props: ModalProps<P, E>,
+) => JSX.Element;
 
-export type OpenModalHandler<P = any> = (
-  Component: ModalComponent<P>,
-  props?: PartialModalProps<P>,
+export type OpenModalHandler<P = any, E = void> = (
+  Component: ModalComponent<P, E>,
+  props?: PartialModalProps<P, E>,
 ) => Promise<P | null>;
 
 export interface ModalItem<P = any> {

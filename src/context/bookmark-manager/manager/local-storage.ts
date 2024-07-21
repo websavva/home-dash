@@ -104,7 +104,11 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     return newFolder;
   };
 
-  addBookmark = async ({ title, url, parentId }: CreateBookmarkProps) => {
+  public addBookmark = async ({
+    title,
+    url,
+    parentId,
+  }: CreateBookmarkProps) => {
     const newBookmark: Bookmark = {
       id: this.generateId(),
       parentId,
@@ -128,7 +132,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     return newBookmark;
   };
 
-  removeFolder = async (folderId: string): Promise<boolean> => {
+  public removeFolder = async (folderId: string): Promise<boolean> => {
     this.tree!.children = this.tree!.children!.filter(
       ({ id }) => folderId !== id,
     );
@@ -138,7 +142,7 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     return true;
   };
 
-  removeBookmark = async (bookmarkId: string): Promise<boolean> => {
+  public removeBookmark = async (bookmarkId: string): Promise<boolean> => {
     for (const folder of this.tree!.children!) {
       const bookmarkIndex = folder.children!.findIndex(
         ({ id }) => bookmarkId === id,
@@ -154,6 +158,21 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
         this.updateTree();
       }
     }
+
+    return true;
+  };
+
+  public updateFolder = async (folderId: string, title: string) => {
+    this.tree.children = this.tree.children!.map((folder) => {
+      if (folder.id !== folderId) return folder;
+
+      return {
+        ...folder,
+        title,
+      };
+    });
+
+    this.updateTree();
 
     return true;
   };

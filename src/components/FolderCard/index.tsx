@@ -1,9 +1,10 @@
 import type { HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
-import { CopyXIcon, BookmarkPlusIcon } from 'lucide-react';
+import { CopyXIcon, BookmarkPlusIcon, EditIcon } from 'lucide-react';
 
 import type { Folder } from '@/context/bookmark-manager/manager';
 import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
+import { useOnEditFolder } from '@/hooks/use-on-edit-folder';
 
 import classes from './index.module.scss';
 import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
@@ -27,14 +28,24 @@ function FolderCard({
 
   const { removeFolder } = useBookmarkManager();
 
+  const onEdit = useOnEditFolder(folder);
+
+  const onRemove = () => {
+    removeFolder(folderId);
+  };
+
   const actions: ButtonMoreAction[] = [
     {
-      id: 'remove-folder',
+      id: 'edit',
+      Icon: EditIcon,
+      label: 'Edit',
+      onClick: onEdit,
+    },
+    {
+      id: 'remove',
       Icon: CopyXIcon,
       label: 'Remove',
-      onClick: () => {
-        removeFolder(folderId);
-      },
+      onClick: onRemove,
     },
     {
       id: 'add-bookmark',

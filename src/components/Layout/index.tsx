@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 
 import { LayoutDashboardIcon, CopyPlusIcon } from 'lucide-react';
 
-import { useOnAddNewCard } from '@/hooks/use-on-add-new-card';
+import { useOnAddFolder } from '@/hooks/use-on-add-folder';
 
 import classes from './index.module.scss';
 
@@ -12,7 +12,7 @@ function Layout({
   className,
   ...attrs
 }: HTMLAttributes<HTMLDivElement>) {
-  const onAddNewCard = useOnAddNewCard();
+  const onAddFolder = useOnAddFolder();
 
   const sidebarButtons = [
     {
@@ -23,7 +23,7 @@ function Layout({
     {
       id: 'new-card-addition',
       Icon: CopyPlusIcon,
-      onClick: onAddNewCard,
+      onClick: onAddFolder,
     },
   ];
 

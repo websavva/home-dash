@@ -8,12 +8,22 @@ import Modal from '../Modal';
 
 import classes from './index.module.scss';
 
-export interface AddFolderModalForm {
+export interface FolderModalForm {
   title: string;
 }
 
-function AddFolderModal({ submit, close }: ModalProps<AddFolderModalForm>) {
-  const [title, setTitle] = useState('');
+export interface FolderModalExtraProps {
+  initialTitle?: string;
+  buttonLabel?: string;
+}
+
+function AddFolderModal({
+  submit,
+  close,
+  initialTitle = '',
+  buttonLabel = 'Create',
+}: ModalProps<FolderModalForm, FolderModalExtraProps>) {
+  const [title, setTitle] = useState(initialTitle);
 
   return (
     <Modal onClose={close} title="Add New Card">
@@ -37,7 +47,7 @@ function AddFolderModal({ submit, close }: ModalProps<AddFolderModalForm>) {
         />
 
         <Button type="submit" className={classes['add-folder-modal__btn']}>
-          Create
+          {buttonLabel}
         </Button>
       </form>
     </Modal>
