@@ -3,15 +3,16 @@ import { useState } from 'react';
 import type { ModalProps } from '@/context/modals/types';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
+import { useInputControl } from '@/hooks/use-input-control';
 
 import Modal from '../Modal';
 
 import classes from './index.module.scss';
 
-export interface BookmarkModalForm {
+export type BookmarkModalForm = {
   title: string;
   url: string;
-}
+};
 
 export interface BookmarkModalExtraProps {
   initialForm?: BookmarkModalForm;
@@ -31,6 +32,8 @@ function BookmarkModal({
     },
   );
 
+  const inputControl = useInputControl(form, setForm);
+
   return (
     <Modal onClose={close} title="Add New Card">
       <form
@@ -42,26 +45,14 @@ function BookmarkModal({
         }}
       >
         <Input
-          value={form.title}
-          onChange={({ target: { value: newTitle } }) => {
-            setForm((form) => ({
-              ...form,
-              title: newTitle,
-            }));
-          }}
+          {...inputControl('title')}
           placeholder="Enter title..."
           type="text"
           required
         />
 
         <Input
-          value={form.url}
-          onChange={({ target: { value: newUrl } }) => {
-            setForm((form) => ({
-              ...form,
-              title: newUrl,
-            }));
-          }}
+          {...inputControl('url')}
           placeholder="Enter URL..."
           type="url"
           required

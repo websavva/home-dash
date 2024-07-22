@@ -36,3 +36,11 @@ button {
 svg {
   fill: currenColor;
 }
+
+a {
+  &,
+  &:visited,
+  &:hover {
+    text-decoration: none;
+  }
+}

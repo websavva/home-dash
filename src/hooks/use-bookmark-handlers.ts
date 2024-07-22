@@ -18,25 +18,22 @@ export const useBookmarkHandlers = () => {
   ) => {
     const form = await openModal(BookmarkModal, props);
 
-    const trimmedTitle = form?.title?.trim();
+    if (!form) return;
 
-    if (!trimmedTitle) return;
-
-    await onSuccess(trimmedTitle);
+    await onSuccess(form);
   };
 
-  const onAdd = () => openBookmarkModal((title) => addBookmark(title));
-
-  const onEdit = (folder: Bookmark) =>
-    openBookmarkModal((newTitle) => updateBookmark(folder.id, newTitle), {
-      buttonLabel: 'Save',
-      initialTitle: folder.title,
-    });
+  const onAdd = (folderId: string) =>
+    openBookmarkModal((form) =>
+      addBookmark({
+        ...form,
+        parentId: folderId,
+      }),
+    );
 
   const onRemove = (folder: Bookmark) => removeBookmark(folder.id);
 
   return {
-    onEdit,
     onAdd,
     onRemove,
   };

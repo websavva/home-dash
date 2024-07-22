@@ -1,16 +1,19 @@
 .folder-card {
   height: 37.5rem;
-  padding: 1rem 2rem;
+  padding-top: 1rem;
   border-radius: 8px;
   box-shadow: 0px 2px 3px map.get($theme, 'folder-card-shadow-color');
   background: map.get($theme, 'bg-primary');
   display: flex;
   flex-direction: column;
-  
+
+  --folder-card-horizontal-gap: 2rem;
+
   $root: &;
 
   &__head {
     margin-bottom: 1.5rem;
+    padding: 0 var(--folder-card-horizontal-gap);
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -21,11 +24,10 @@
       margin-right: 1rem;
     }
 
-    
     &__btn {
       margin-left: auto;
       transition: opacity $transition;
-      
+
       #{$root}:not(:hover) &:not(:has([data-button-more-actions])) {
         opacity: 0;
       }
@@ -39,5 +41,9 @@
   &__body {
     flex: 1;
     overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

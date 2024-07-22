@@ -17,11 +17,9 @@ export const useFolderHandlers = () => {
   ) => {
     const form = await openModal(FolderModal, props);
 
-    const trimmedTitle = form?.title?.trim();
+    if (!form) return;
 
-    if (!trimmedTitle) return;
-
-    await onSuccess(trimmedTitle);
+    await onSuccess(form.title);
   };
 
   const onAdd = () => openFolderModal((title) => addFolder(title));

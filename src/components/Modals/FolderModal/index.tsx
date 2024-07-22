@@ -7,10 +7,11 @@ import Button from '@/components/UI/Button';
 import Modal from '../Modal';
 
 import classes from './index.module.scss';
+import { useInputControl } from '@/hooks/use-input-control';
 
-export interface FolderModalForm {
+export type FolderModalForm = {
   title: string;
-}
+};
 
 export interface FolderModalExtraProps {
   initialTitle?: string;
@@ -23,7 +24,11 @@ function FolderModal({
   initialTitle = '',
   buttonLabel = 'Create',
 }: ModalProps<FolderModalForm, FolderModalExtraProps>) {
-  const [title, setTitle] = useState(initialTitle);
+  const [form, setForm] = useState<FolderModalForm>({
+    title: initialTitle,
+  });
+
+  const inputControl = useInputControl<FolderModalForm>(form, setForm);
 
   return (
     <Modal onClose={close} title="Add New Card">
@@ -32,14 +37,11 @@ function FolderModal({
         onSubmit={(e) => {
           e.preventDefault();
 
-          submit({ title });
+          submit(form);
         }}
       >
         <Input
-          value={title}
-          onChange={({ target: { value: newTitle } }) => {
-            setTitle(newTitle);
-          }}
+          {...inputControl('title')}
           placeholder="Enter title..."
           type="text"
           required

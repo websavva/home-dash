@@ -20,11 +20,9 @@ function BookmarkItem({ bookmark, className, ...attrs }: BookmarkItemProps) {
       href={url}
       className={clsx(classes['bookmark-item'], className)}
     >
-      <div>
-        <FavIcon url={url} className={classes['bookmark-item__icon']} />
+      <FavIcon url={url} className={classes['bookmark-item__icon']} />
 
-        <span>{title}</span>
-      </div>
+      <span>{title}</span>
     </a>
   );
 }
