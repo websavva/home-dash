@@ -8,7 +8,7 @@ import BookmarkModal, {
 } from '@/components/Modals/BookmarkModal';
 
 export const useBookmarkHandlers = () => {
-  const { addBookmark, removeBookmark } = useBookmarkManager();
+  const { addBookmark, removeBookmark, updateBookmark } = useBookmarkManager();
 
   const { open: openModal } = useModals();
 
@@ -31,10 +31,28 @@ export const useBookmarkHandlers = () => {
       }),
     );
 
-  const onRemove = (folder: Bookmark) => removeBookmark(folder.id);
+  const onEdit = ({ id, parentId, title, url }: Bookmark) =>
+    openBookmarkModal(
+      (form) =>
+        updateBookmark(parentId!, {
+          id,
+          ...form,
+        }),
+      {
+        initialForm: {
+          url,
+          title,
+        },
+
+        buttonLabel: 'Save',
+      },
+    );
+
+  const onRemove = (bookmark: Bookmark) => removeBookmark(bookmark.id);
 
   return {
     onAdd,
     onRemove,
+    onEdit,
   };
 };

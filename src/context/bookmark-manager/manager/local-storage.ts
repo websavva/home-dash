@@ -6,6 +6,7 @@ import type {
   BookmarkTreeNode,
   OnBookmarkTreeChangeCallback,
   MoveBookmarkArgs,
+  UpdateBookmarkProps,
 } from './types';
 
 import { BOOKMARK_TREE_ID } from './config';
@@ -169,6 +170,28 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
       return {
         ...folder,
         title,
+      };
+    });
+
+    this.updateTree();
+
+    return true;
+  };
+
+  public updateBookmark = async (
+    folderId: string,
+    { id: bookmarkId, ...updatedBookmarkFields }: UpdateBookmarkProps,
+  ) => {
+    const folder = this.tree.children!.find(({ id }) => id === folderId);
+
+    if (!folder) throw new Error(`No folder with id ${folderId} was found !`);
+
+    folder.children = folder.children?.map((bookmark) => {
+      if (bookmark.id !== bookmarkId) return bookmark;
+
+      return {
+        ...bookmark,
+        ...updatedBookmarkFields,
       };
     });
 

@@ -12,6 +12,10 @@ export type CreateBookmarkProps = Required<
   Pick<Bookmark, 'title' | 'parentId' | 'url'>
 >;
 
+export type UpdateBookmarkProps = Partial<Pick<Bookmark, 'title' | 'url'>> & {
+  id: string;
+};
+
 export type MoveBookmarkArgs = {
   parentId?: string;
   index: number;

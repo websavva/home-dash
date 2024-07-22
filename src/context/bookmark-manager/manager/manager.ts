@@ -5,6 +5,7 @@ import type {
   CreateBookmarkProps,
   MoveBookmarkArgs,
   OnBookmarkTreeChangeCallback,
+  UpdateBookmarkProps,
 } from './types';
 
 export abstract class BookmarkManager {
@@ -24,9 +25,17 @@ export abstract class BookmarkManager {
 
   public abstract removeBookmark(bookmarkId: string): Promise<boolean>;
 
-  public abstract updateFolder(folderId: string, title: string): Promise<boolean>; 
+  public abstract updateFolder(
+    folderId: string,
+    title: string,
+  ): Promise<boolean>;
 
   public abstract moveFolder(folderId: string, index: number): Promise<boolean>;
+
+  public abstract updateBookmark(
+    folderId: string,
+    updateBookmark: UpdateBookmarkProps,
+  ): Promise<boolean>;
 
   public abstract moveBookmark(
     bookmarkId: string,
