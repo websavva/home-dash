@@ -1,20 +1,29 @@
+@use "sass:selector";
+
+@use '../UI/ButtonMore/mixins' as *;
+
 .bookmark-item {
   display: flex;
   align-items: center;
-  padding: 1rem var(--folder-card-horizontal-gap);
-
+  padding: 0.7rem var(--folder-card-horizontal-gap);
 
   &:hover {
-    background-color: map.get($theme, 'bg-secondary');
+    background-color: map.get($theme, 'bg-tertiary');
   }
 
   &__icon {
     @include square-size($size: 1.1em);
   }
-  
+
   &__title {
     flex: 1 0;
     overflow: hidden;
     margin: 0 1rem;
   }
+
+  @include button-more-reveal(
+    $trigger: &,
+    $target: selector.append(&, "__btn"),
+    $transition: $transition
+  );
 }

@@ -1,3 +1,5 @@
+@use '../UI/ButtonMore/mixins' as *;
+
 .folder-card {
   height: 37.5rem;
   padding-top: 1rem;
@@ -26,15 +28,8 @@
 
     &__btn {
       margin-left: auto;
-      transition: opacity $transition;
 
-      #{$root}:not(:hover) &:not(:has([data-button-more-actions])) {
-        opacity: 0;
-      }
-
-      #{$root}:hover & {
-        opacity: 1;
-      }
+      @include button-more-reveal($trigger: $root, $target: &, $transition: $transition);
     }
   }
 
