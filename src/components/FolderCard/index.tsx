@@ -8,10 +8,10 @@ import ButtonMoreAnchor from '@/components/UI/ButtonMore/Anchor';
 import { useFolderHandlers } from '@/hooks/use-folder-handlers';
 import { useBookmarkHandlers } from '@/hooks/use-bookmark-handlers';
 
-
 import BookmarkItem from '../BookmarkItem';
 
 import classes from './index.module.scss';
+import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 
 export interface FolderCardProps extends HTMLAttributes<HTMLDivElement> {
   folder: Folder;
@@ -28,6 +28,8 @@ function FolderCard({
 
     children: bookmarks = [],
   } = folder;
+
+  const { moveFolder } = useBookmarkManager();
 
   const folderHandlers = useFolderHandlers();
   const bookmarkHandlers = useBookmarkHandlers();
@@ -60,7 +62,20 @@ function FolderCard({
   ];
 
   return (
-    <ButtonMoreAnchor {...attrs} className={clsx(classes['folder-card'], className)}>
+    <ButtonMoreAnchor
+      {...attrs}
+      className={clsx(classes['folder-card'], className)}
+      draggable="true"
+      onDragOver={(e) => e.preventDefault()}
+      onDragStart={(e) => e.dataTransfer.setData('text/plain', folder.id)}
+      onDrop={(e) => {
+        const targetFolderId = e.dataTransfer.getData('text/plain');
+
+        if (!targetFolderId) return;
+
+        moveFolder(targetFolderId, folder.index!);
+      }}
+    >
       <div className={classes['folder-card__head']}>
         <div className={classes['folder-card__head__title']}>{title}</div>
 
