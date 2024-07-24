@@ -1,0 +1,15 @@
+.button-more-anchor {
+  $parent: &;
+
+  &__btn {
+    transition: opacity $transition;
+
+    #{$parent}:not(:hover) &:not([data-button-more="opened"]) {
+      opacity: 0;
+    }
+
+    #{$parent}:hover & {
+      opacity: 1;
+    }
+  }
+}

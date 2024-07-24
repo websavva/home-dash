@@ -1,14 +1,15 @@
 import {
-  useState,
-  useCallback,
   type HTMLAttributes,
   type FunctionComponent,
+  useCallback,
+  useContext,
 } from 'react';
 import { EllipsisVerticalIcon } from 'lucide-react';
 import { clsx } from 'clsx';
 
 import { useClickAway } from '@/hooks/use-click-away';
 
+import { ButtonMoreContext } from './Anchor';
 import classes from './index.module.scss';
 
 export interface ButtonMoreAction {
@@ -23,36 +24,28 @@ export interface ButtonMoreProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 function ButtonMore({ actions, className, ...attrs }: ButtonMoreProps) {
-  const [isOpened, setIsOpened] = useState(false);
+  const { isOpened, onToggle, onClose, buttonClassName } =
+    useContext(ButtonMoreContext);
 
   const onClickAway = useCallback(() => {
-    setIsOpened(false);
-  }, [setIsOpened]);
+    onClose();
+  }, [onClose]);
 
   const rootElementRef = useClickAway<HTMLDivElement>(onClickAway);
-
-  const onToggle = () => {
-    setIsOpened((isPrevOpened) => !isPrevOpened);
-  };
 
   return (
     <div
       {...attrs}
       ref={rootElementRef}
-      className={clsx(classes['button-more'], className)}
+      className={clsx(classes['button-more'], buttonClassName, className)}
+      data-button-more={isOpened ? 'opened' : 'closed'}
     >
-      <button 
-        className={classes['button-more__activator']}
-        onClick={onToggle}
-      >
+      <button className={classes['button-more__activator']} onClick={onToggle}>
         <EllipsisVerticalIcon />
       </button>
 
       {isOpened && (
-        <div
-          className={classes['button-more__actions']}
-          data-button-more-actions
-        >
+        <div className={classes['button-more__actions']}>
           {actions.map(({ id, onClick, label, Icon }) => {
             return (
               <div
@@ -60,7 +53,7 @@ function ButtonMore({ actions, className, ...attrs }: ButtonMoreProps) {
                 className={classes['button-more__actions__item']}
                 onClick={() => {
                   onClick();
-                  setIsOpened(false);
+                  onClose();
                 }}
               >
                 <Icon />

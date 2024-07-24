@@ -1,15 +1,15 @@
-import type { HTMLAttributes } from 'react';
-import { clsx } from 'clsx';
+import { type HTMLAttributes } from 'react';
 import { EditIcon, CopyXIcon } from 'lucide-react';
 
 import type { Bookmark } from '@/context/bookmark-manager/manager';
 import FavIcon from '@/components/FavIcon';
+import ButtonMoreAnchor from '@/components/UI/ButtonMore/Anchor';
 import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
 
 import classes from './index.module.scss';
 import { useBookmarkHandlers } from '@/hooks/use-bookmark-handlers';
 
-export interface BookmarkItemProps extends HTMLAttributes<HTMLAnchorElement> {
+export interface BookmarkItemProps extends HTMLAttributes<HTMLDivElement> {
   bookmark: Bookmark;
 }
 
@@ -32,23 +32,17 @@ function BookmarkItem({ bookmark, className, ...attrs }: BookmarkItemProps) {
       onClick: () => bookmarkHandlers.onRemove(bookmark),
     },
   ];
+
   return (
-    <a
-      {...attrs}
-      target="_blank"
-      href={url}
-      className={clsx(classes['bookmark-item'], className)}
-    >
-      <FavIcon url={url} className={classes['bookmark-item__icon']} />
+    <ButtonMoreAnchor {...attrs} className={className}>
+      <a target="_blank" className={classes['bookmark-item']} href={url}>
+        <FavIcon url={url} className={classes['bookmark-item__icon']} />
 
-      <span className={classes['bookmark-item__title']}>{title}</span>
+        <span className={classes['bookmark-item__title']}>{title}</span>
 
-      <ButtonMore
-        onClick={(e) => e.preventDefault()}
-        actions={actions}
-        className={classes['bookmark-item__btn']}
-      />
-    </a>
+        <ButtonMore actions={actions} onClick={(e) => e.preventDefault()} />
+      </a>
+    </ButtonMoreAnchor>
   );
 }
 

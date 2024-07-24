@@ -1,5 +1,3 @@
-@use '../UI/ButtonMore/mixins' as *;
-
 .folder-card {
   height: 37.5rem;
   padding-top: 1rem;
@@ -8,10 +6,9 @@
   background: map.get($theme, 'bg-primary');
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   --folder-card-horizontal-gap: 2rem;
-
-  $root: &;
 
   &__head {
     margin-bottom: 1.5rem;
@@ -28,8 +25,6 @@
 
     &__btn {
       margin-left: auto;
-
-      @include button-more-reveal($trigger: $root, $target: &, $transition: $transition);
     }
   }
 

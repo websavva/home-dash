@@ -4,8 +4,10 @@ import { CopyXIcon, BookmarkPlusIcon, EditIcon } from 'lucide-react';
 
 import type { Folder } from '@/context/bookmark-manager/manager';
 import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
+import ButtonMoreAnchor from '@/components/UI/ButtonMore/Anchor';
 import { useFolderHandlers } from '@/hooks/use-folder-handlers';
 import { useBookmarkHandlers } from '@/hooks/use-bookmark-handlers';
+
 
 import BookmarkItem from '../BookmarkItem';
 
@@ -58,7 +60,7 @@ function FolderCard({
   ];
 
   return (
-    <div {...attrs} className={clsx(classes['folder-card'], className)}>
+    <ButtonMoreAnchor {...attrs} className={clsx(classes['folder-card'], className)}>
       <div className={classes['folder-card__head']}>
         <div className={classes['folder-card__head__title']}>{title}</div>
 
@@ -73,7 +75,7 @@ function FolderCard({
           return <BookmarkItem key={bookmark.id} bookmark={bookmark} />;
         })}
       </div>
-    </div>
+    </ButtonMoreAnchor>
   );
 }
 

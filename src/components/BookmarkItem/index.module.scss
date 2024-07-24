@@ -1,7 +1,3 @@
-@use "sass:selector";
-
-@use '../UI/ButtonMore/mixins' as *;
-
 .bookmark-item {
   display: flex;
   align-items: center;
@@ -12,7 +8,7 @@
   }
 
   &__icon {
-    @include square-size($size: 1.1em);
+    @include square-size($size: 1.25em);
   }
 
   &__title {
@@ -20,10 +16,4 @@
     overflow: hidden;
     margin: 0 1rem;
   }
-
-  @include button-more-reveal(
-    $trigger: &,
-    $target: selector.append(&, "__btn"),
-    $transition: $transition
-  );
 }
