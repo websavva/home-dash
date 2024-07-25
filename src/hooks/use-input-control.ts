@@ -8,7 +8,7 @@ export const useInputControl = <F extends Record<string, string>>(
     const onChange: ChangeEventHandler<HTMLInputElement> = ({
       target: { value: newValue },
     }) => {
-      setForm((form) => ({ ...form, [fieldName]: newValue.trim() }));
+      setForm((form) => ({ ...form, [fieldName]: newValue }));
     };
     return {
       value: form[fieldName],

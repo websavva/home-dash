@@ -5,6 +5,7 @@ import type { Folder } from '@/context/bookmark-manager/manager';
 import FolderModal, {
   FolderModalExtraProps,
 } from '@/components/Modals/FolderModal';
+import { isFormValid } from '@/utils/validators';
 
 export const useFolderHandlers = () => {
   const { addFolder, updateFolder, removeFolder } = useBookmarkManager();
@@ -17,18 +18,21 @@ export const useFolderHandlers = () => {
   ) => {
     const form = await openModal(FolderModal, props);
 
-    if (!form) return;
+    if (!form || !isFormValid(form)) return;
 
     await onSuccess(form.title);
   };
 
-  const onAdd = () => openFolderModal((title) => addFolder(title));
+  const onAdd = () => openFolderModal((title) => title && addFolder(title));
 
   const onEdit = (folder: Folder) =>
-    openFolderModal((newTitle) => updateFolder(folder.id, newTitle), {
-      buttonLabel: 'Save',
-      initialTitle: folder.title,
-    });
+    openFolderModal(
+      (newTitle) => newTitle.trim() && updateFolder(folder.id, newTitle),
+      {
+        buttonLabel: 'Save',
+        initialTitle: folder.title,
+      },
+    );
 
   const onRemove = (folder: Folder) => removeFolder(folder.id);
 

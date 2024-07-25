@@ -6,6 +6,7 @@ import BookmarkModal, {
   BookmarkModalExtraProps,
   BookmarkModalForm,
 } from '@/components/Modals/BookmarkModal';
+import { isFormValid } from '@/utils/validators';
 
 export const useBookmarkHandlers = () => {
   const { addBookmark, removeBookmark, updateBookmark } = useBookmarkManager();
@@ -18,7 +19,7 @@ export const useBookmarkHandlers = () => {
   ) => {
     const form = await openModal(BookmarkModal, props);
 
-    if (!form) return;
+    if (!form || !isFormValid(form)) return;
 
     await onSuccess(form);
   };
