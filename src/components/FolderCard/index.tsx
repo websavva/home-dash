@@ -29,7 +29,7 @@ function FolderCard({
     children: bookmarks = [],
   } = folder;
 
-  const { moveFolder } = useBookmarkManager();
+  const { moveFolder, moveBookmark } = useBookmarkManager();
 
   const folderHandlers = useFolderHandlers();
   const bookmarkHandlers = useBookmarkHandlers();
@@ -67,13 +67,24 @@ function FolderCard({
       className={clsx(classes['folder-card'], className)}
       draggable="true"
       onDragOver={(e) => e.preventDefault()}
-      onDragStart={(e) => e.dataTransfer.setData('text/plain', folder.id)}
-      onDrop={(e) => {
-        const targetFolderId = e.dataTransfer.getData('text/plain');
+      onDragStart={(e) => {
+        e.dataTransfer.setData('folder', folder.id);
+      }}
+      onDrop={async (e) => {
+        const targetedBookmarkId = e.dataTransfer.getData('bookmark');
 
-        if (!targetFolderId) return;
+        if (targetedBookmarkId) {
+          return moveBookmark(targetedBookmarkId, {
+            parentId: folder.id,
+            index: folder.children.length
+          });
+        }
 
-        moveFolder(targetFolderId, folder.index!);
+        const targetedFolderId = e.dataTransfer.getData('folder');
+
+        if (!targetedFolderId || targetedFolderId === folder.id) return;
+
+        await moveFolder(targetedFolderId, folder.index!);
       }}
     >
       <div className={classes['folder-card__head']}>

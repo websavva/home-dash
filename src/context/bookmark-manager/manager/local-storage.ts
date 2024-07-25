@@ -286,6 +286,8 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
       this.removeItemFromList(fromFolder.children!, fromIndex!);
 
       this.insertItemIntoList(toFolder.children!, bookmark, toIndex);
+
+      bookmark.parentId = toFolder.id;
     }
 
     this.updateTree();

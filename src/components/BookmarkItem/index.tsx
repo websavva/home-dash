@@ -8,6 +8,7 @@ import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
 
 import classes from './index.module.scss';
 import { useBookmarkHandlers } from '@/hooks/use-bookmark-handlers';
+import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 
 export interface BookmarkItemProps extends HTMLAttributes<HTMLDivElement> {
   bookmark: Bookmark;
@@ -15,6 +16,8 @@ export interface BookmarkItemProps extends HTMLAttributes<HTMLDivElement> {
 
 function BookmarkItem({ bookmark, className, ...attrs }: BookmarkItemProps) {
   const { url, title } = bookmark;
+
+  const { moveBookmark } = useBookmarkManager();
 
   const bookmarkHandlers = useBookmarkHandlers();
 
@@ -35,7 +38,27 @@ function BookmarkItem({ bookmark, className, ...attrs }: BookmarkItemProps) {
 
   return (
     <ButtonMoreAnchor {...attrs} className={className}>
-      <a target="_blank" className={classes['bookmark-item']} href={url}>
+      <a
+        target="_blank"
+        className={classes['bookmark-item']}
+        href={url}
+        onDragOver={(e) => e.preventDefault}
+        onDragStart={(e) => {
+          e.stopPropagation();
+          e.dataTransfer.setData('bookmark', bookmark.id);
+        }}
+        onDrop={async (e) => {
+          e.stopPropagation();
+          const targetedBookmarkId = e.dataTransfer.getData('bookmark');
+
+          if (!targetedBookmarkId || targetedBookmarkId === bookmark.id) return;
+
+          await moveBookmark(targetedBookmarkId, {
+            parentId: bookmark.parentId!,
+            index: bookmark.index!,
+          });
+        }}
+      >
         <FavIcon url={url} className={classes['bookmark-item__icon']} />
 
         <span className={classes['bookmark-item__title']}>{title}</span>
