@@ -5,10 +5,10 @@ import type { Bookmark } from '@/context/bookmark-manager/manager';
 import FavIcon from '@/components/FavIcon';
 import ButtonMoreAnchor from '@/components/UI/ButtonMore/Anchor';
 import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
-
-import classes from './index.module.scss';
 import { useBookmarkHandlers } from '@/hooks/use-bookmark-handlers';
 import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
+
+import classes from './index.module.scss';
 
 export interface BookmarkItemProps extends HTMLAttributes<HTMLDivElement> {
   bookmark: Bookmark;

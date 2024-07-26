@@ -76,7 +76,7 @@ function FolderCard({
         if (targetedBookmarkId) {
           return moveBookmark(targetedBookmarkId, {
             parentId: folder.id,
-            index: folder.children.length
+            index: folder.children.length,
           });
         }
 

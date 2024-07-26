@@ -4,7 +4,7 @@
   &__btn {
     transition: opacity $transition;
 
-    #{$parent}:not(:hover) &:not([data-button-more="opened"]) {
+    #{$parent}:not(:hover) &:not([data-button-more='opened']) {
       opacity: 0;
     }
 

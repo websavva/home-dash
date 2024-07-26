@@ -1,16 +1,16 @@
 .input {
-    background: none;
-    appearance: none;
-    border: none;
-    border-bottom: 1px solid map.get($theme, 'text-primary');
-    padding-bottom: .7rem;
+  background: none;
+  appearance: none;
+  border: none;
+  border-bottom: 1px solid map.get($theme, 'text-primary');
+  padding-bottom: 0.7rem;
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 
-    &::-webkit-input-placeholder {
-        color: inherit;
-        opacity: .5;
-    }
+  &::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
 }

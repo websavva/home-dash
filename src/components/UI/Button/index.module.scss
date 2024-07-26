@@ -1,8 +1,8 @@
 .button {
-    background: map.get($theme, 'bg-secondary');
-    color: map.get($theme, 'text-primary');
-    padding: .7rem 2.5rem;
-    border-radius: 5px;
-    display: block;
-    line-height: 1;
+  background: map.get($theme, 'bg-secondary');
+  color: map.get($theme, 'text-primary');
+  padding: 0.7rem 2.5rem;
+  border-radius: 5px;
+  display: block;
+  line-height: 1;
 }
