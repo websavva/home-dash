@@ -28,21 +28,31 @@ export class NativeBookmarkManager extends BookmarkManager {
     'onMoved',
   ] as const;
 
-  public static getExistingTree() {
-    return api
-      .search({
-        title: BOOKMARK_TREE_ID,
-      })
-      .then(([tree]) => tree);
+  public static async getExistingTree() {
+    const foundExistingTrees = await api.search({
+      title: BOOKMARK_TREE_ID,
+    });
+
+    const doesTreeExist = foundExistingTrees.length > 0;
+
+    if (doesTreeExist) {
+      const [fullExistingTree] = await api.getSubTree(foundExistingTrees[0].id);
+
+      return fullExistingTree!;
+    } else {
+      return null;
+    }
   }
 
   public static async create() {
     let tree = await NativeBookmarkManager.getExistingTree();
 
     if (!tree) {
-      tree = await api.create({
+      await api.create({
         title: BOOKMARK_TREE_ID,
       });
+
+      tree = (await NativeBookmarkManager.getExistingTree())!;
     }
 
     return new NativeBookmarkManager(tree);
@@ -66,10 +76,7 @@ export class NativeBookmarkManager extends BookmarkManager {
   };
 
   public removeFolder = (folderId: string) => {
-    return this.api
-      .removeTree(folderId)
-      .then(() => true)
-      // .catch(() => false);
+    return this.api.removeTree(folderId).then(() => true);
   };
 
   public moveFolder = (folderId: string, index: number) => {
@@ -78,8 +85,7 @@ export class NativeBookmarkManager extends BookmarkManager {
         index,
         parentId: this.rootId,
       })
-      .then(() => true)
-      // .catch(() => false);
+      .then(() => true);
   };
 
   public addBookmark = async (bookmarkProps: CreateBookmarkProps) => {
@@ -89,10 +95,7 @@ export class NativeBookmarkManager extends BookmarkManager {
   };
 
   public removeBookmark = (bookmarkId: string) => {
-    return this.api
-      .remove(bookmarkId)
-      .then(() => true)
-      // .catch(() => false);
+    return this.api.remove(bookmarkId).then(() => true);
   };
 
   public moveBookmark = (bookmarkId: string, args: MoveBookmarkArgs) => {
@@ -114,16 +117,17 @@ export class NativeBookmarkManager extends BookmarkManager {
     _: string,
     { id: bookmarkId, ...bookmarkProps }: UpdateBookmarkProps,
   ) => {
-    return this.api
-      .update(bookmarkId, bookmarkProps)
-      .then(() => true)
-      // .catch(() => false);
+    return this.api.update(bookmarkId, bookmarkProps).then(() => true);
   };
 
   protected onTreeChange = async () => {
     const updatedTree = await NativeBookmarkManager.getExistingTree();
 
-    this.runOnChangeCallbacks(updatedTree);
+    console.log('Tree has changed ...');
+    console.log({
+      updatedTree,
+    });
+    this.runOnChangeCallbacks(updatedTree!);
   };
 
   public setUpGlobalListener = () => {
