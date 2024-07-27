@@ -3,7 +3,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const sassPartialsSrc = path.resolve(__dirname, './src/sass/partials');
+const sassPartialsSrc = path.resolve(__dirname, './src/page/sass/partials');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,9 +13,11 @@ export default defineConfig({
     port: 3e3,
   },
 
+  root: path.resolve(__dirname, './src/page'),
+
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './src/page'),
     },
   },
 
