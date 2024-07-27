@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "page:dev": "vite --config=vite.page.config.ts",
-    "build": "tsc -b && vite build",
+    "page:build": "vite --config=vite.page.config.ts build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "prettier --write . && eslint . --ext ts,tsx --fix",
     "preview": "vite preview"

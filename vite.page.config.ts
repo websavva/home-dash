@@ -15,6 +15,12 @@ export default defineConfig({
 
   root: path.resolve(__dirname, './src/page'),
 
+  build: {
+    emptyOutDir: true,
+
+    outDir: path.resolve(__dirname, 'dist'),
+  },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src/page'),
