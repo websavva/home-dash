@@ -1,1 +1,18 @@
-{}
+{
+  "manifest_version": 3,
+  "name": "HomeDash - Enhanced New Tab",
+  "short_name": "HomeDash",
+  "author": "WebSavva",
+  "description": "A replacement for Google Chrome's 'new tab' page that lets you easily access your favorite bookmarks in structured way",
+  "version": "0.0.1",
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["bookmarks", "contextMenus", "chrome://favicon/"]
+}
