@@ -3,12 +3,14 @@ import { CopyPlusIcon } from 'lucide-react';
 import { clsx } from 'clsx';
 
 import { useFolderHandlers } from '@/hooks/use-folder-handlers';
+import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 
 import baseClasses from '../index.module.scss';
 
 import classes from './index.module.scss';
 
 function FolderCardPlaceholder(props: HTMLAttributes<HTMLDivElement>) {
+  const { isLoaded: isBookmarkManagerLoaded } = useBookmarkManager();
   const { onAdd } = useFolderHandlers();
 
   return (
@@ -19,7 +21,7 @@ function FolderCardPlaceholder(props: HTMLAttributes<HTMLDivElement>) {
         classes['folder-card-placeholder'],
         props.className,
       )}
-      onClick={onAdd}
+      onClick={() => isBookmarkManagerLoaded && onAdd()}
     >
       <CopyPlusIcon />
     </div>

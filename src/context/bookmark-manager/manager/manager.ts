@@ -11,6 +11,9 @@ import type {
 export abstract class BookmarkManager {
   public tree: BookmarkTreeNode;
 
+  protected isGlobalListenerSetUp: boolean = false;
+  protected onChangeCallbacks: OnBookmarkTreeChangeCallback[] = [];
+
   constructor() {
     this.tree = { title: 'root' } as BookmarkTreeNode;
   }
@@ -34,7 +37,7 @@ export abstract class BookmarkManager {
 
   public abstract updateBookmark(
     folderId: string,
-    updateBookmark: UpdateBookmarkProps,
+    updatedBookmark: UpdateBookmarkProps,
   ): Promise<boolean>;
 
   public abstract moveBookmark(
@@ -42,5 +45,27 @@ export abstract class BookmarkManager {
     args: MoveBookmarkArgs,
   ): Promise<boolean>;
 
-  public abstract onChange(callback: OnBookmarkTreeChangeCallback): () => void;
+  public abstract setUpGlobalListener(): void;
+
+  public abstract removeGlobalListener(): void;
+
+  public onChange = (callback: OnBookmarkTreeChangeCallback) => {
+    if (!this.isGlobalListenerSetUp) this.setUpGlobalListener();
+
+    this.onChangeCallbacks.push(callback);
+
+    return () => {
+      this.onChangeCallbacks = this.onChangeCallbacks.filter(
+        (currentCallback) => currentCallback !== callback,
+      );
+
+      if (!this.onChangeCallbacks.length) this.removeGlobalListener();
+    };
+  }
+  
+  protected runOnChangeCallbacks(updatedTree: BookmarkTreeNode) {
+    this.onChangeCallbacks.forEach((callback) => {
+      callback(updatedTree);
+    });
+  }
 }

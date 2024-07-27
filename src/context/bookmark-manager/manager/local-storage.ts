@@ -4,49 +4,24 @@ import type {
   Bookmark,
   Folder,
   BookmarkTreeNode,
-  OnBookmarkTreeChangeCallback,
   MoveBookmarkArgs,
   UpdateBookmarkProps,
 } from './types';
 
 import { BOOKMARK_TREE_ID } from './config';
 
+export const getDefaultBookmarkTree = (): BookmarkTreeNode => ({
+  id: BOOKMARK_TREE_ID,
+  children: [],
+  title: '__ROOT__',
+});
+
 export class LocalStorageBookmarkManager extends BookmarkManager {
-  constructor() {
-    super();
-
-    const stringifiedTree = localStorage.getItem(BOOKMARK_TREE_ID);
-
-    let parsedTree = this.parseStringifiedTree(stringifiedTree);
-
-    if (!parsedTree) {
-      parsedTree = this.createBookmarkTree();
-
-      this.updateTree(parsedTree);
-    }
-
-    this.tree = parsedTree;
-  }
-
-  private isListenerSetUp: boolean = false;
-
-  private onChangeCallbacks: OnBookmarkTreeChangeCallback[] = [];
-
   private createBookmarkTree(): BookmarkTreeNode {
-    return {
-      id: BOOKMARK_TREE_ID,
-      children: [],
-      title: '__ROOT__',
-    };
+    return getDefaultBookmarkTree();
   }
 
   generateId = () => crypto.randomUUID();
-
-  private runOnChangeCallbacks(updatedTree: BookmarkTreeNode) {
-    this.onChangeCallbacks.forEach((callback) => {
-      callback(updatedTree);
-    });
-  }
 
   private updateTree(updatedTree: BookmarkTreeNode = this.tree) {
     const copiedUpdatedTree = structuredClone(updatedTree);
@@ -66,16 +41,16 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     this.runOnChangeCallbacks(parsedUpdatedTree);
   };
 
-  public setUpLocalStorageListener() {
+  public setUpGlobalListener() {
     window.addEventListener('storage', this.onLocalStorageHandler);
 
-    this.isListenerSetUp = true;
+    this.isGlobalListenerSetUp = true;
   }
 
-  public removeLocalStorageListener() {
+  public removeGlobalListener() {
     window.removeEventListener('storage', this.onLocalStorageHandler);
 
-    this.isListenerSetUp = false;
+    this.isGlobalListenerSetUp = false;
   }
 
   private parseStringifiedTree(stringifiedTree: string | null) {
@@ -295,17 +270,22 @@ export class LocalStorageBookmarkManager extends BookmarkManager {
     return true;
   };
 
-  public onChange = (callback: OnBookmarkTreeChangeCallback) => {
-    if (!this.isListenerSetUp) this.setUpLocalStorageListener();
+  public static create() {
+    const stringifiedTree = localStorage.getItem(BOOKMARK_TREE_ID);
 
-    this.onChangeCallbacks.push(callback);
+    const localStorageBookmarkManager = new LocalStorageBookmarkManager();
 
-    return () => {
-      this.onChangeCallbacks = this.onChangeCallbacks.filter(
-        (currentCallback) => currentCallback !== callback,
-      );
+    let parsedTree =
+      localStorageBookmarkManager.parseStringifiedTree(stringifiedTree);
 
-      if (!this.onChangeCallbacks.length) this.removeLocalStorageListener();
-    };
-  };
+    if (!parsedTree) {
+      parsedTree = localStorageBookmarkManager.createBookmarkTree();
+
+      localStorageBookmarkManager.updateTree(parsedTree);
+    }
+
+    localStorageBookmarkManager.tree = parsedTree;
+
+    return localStorageBookmarkManager;
+  }
 }

@@ -5,12 +5,15 @@ import { LayoutDashboardIcon, CopyPlusIcon } from 'lucide-react';
 import { useFolderHandlers } from '@/hooks/use-folder-handlers';
 
 import classes from './index.module.scss';
+import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
 
 function Layout({
   children,
   className,
   ...attrs
 }: HTMLAttributes<HTMLDivElement>) {
+  const { isLoaded: isBookmarkManagerLoaded } = useBookmarkManager();
+
   const { onAdd: onAddFolder } = useFolderHandlers();
 
   const sidebarButtons = [
@@ -23,13 +26,14 @@ function Layout({
       id: 'new-card-addition',
       Icon: CopyPlusIcon,
       onClick: onAddFolder,
+      disabled: !isBookmarkManagerLoaded,
     },
   ];
 
   return (
     <div {...attrs} className={clsx(classes['layout'], className)}>
       <aside className={classes['layout__sidebar']}>
-        {sidebarButtons.map(({ id, Icon, onClick }) => {
+        {sidebarButtons.map(({ id, Icon, onClick, disabled }) => {
           const isClickable = Boolean(onClick);
 
           const className = clsx(classes['layout__sidebar__btn'], {
@@ -38,7 +42,12 @@ function Layout({
 
           if (isClickable) {
             return (
-              <button key={id} className={className} onClick={onClick}>
+              <button
+                key={id}
+                className={className}
+                onClick={onClick}
+                disabled={disabled}
+              >
                 <Icon />
               </button>
             );
