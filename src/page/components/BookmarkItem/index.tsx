@@ -1,12 +1,12 @@
 import { type HTMLAttributes } from 'react';
 import { EditIcon, CopyXIcon } from 'lucide-react';
 
-import type { Bookmark } from '@/context/bookmark-manager/manager';
-import FavIcon from '@/components/FavIcon';
-import ButtonMoreAnchor from '@/components/UI/ButtonMore/Anchor';
-import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
-import { useBookmarkHandlers } from '@/hooks/use-bookmark-handlers';
-import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
+import type { Bookmark } from '#page/services/bookmark-manager';
+import FavIcon from '#page/components/FavIcon';
+import ButtonMoreAnchor from '#page/components/UI/ButtonMore/Anchor';
+import ButtonMore, { type ButtonMoreAction } from '#page/components/UI/ButtonMore';
+import { useBookmarkHandlers } from '#page/hooks/use-bookmark-handlers';
+import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
 
 import classes from './index.module.scss';
 

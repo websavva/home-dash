@@ -1,12 +1,12 @@
-import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
-import { useModals } from '@/hooks/use-modals';
-import type { Bookmark } from '@/context/bookmark-manager/manager';
+import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
+import { useModals } from '#page/hooks/use-modals';
+import type { Bookmark } from '#page/services/bookmark-manager';
 
 import BookmarkModal, {
   BookmarkModalExtraProps,
   BookmarkModalForm,
-} from '@/components/Modals/BookmarkModal';
-import { isFormValid } from '@/utils/validators';
+} from '#page/components/Modals/BookmarkModal';
+import { isFormValid } from '#page/utils/validators';
 
 export const useBookmarkHandlers = () => {
   const { addBookmark, removeBookmark, updateBookmark } = useBookmarkManager();

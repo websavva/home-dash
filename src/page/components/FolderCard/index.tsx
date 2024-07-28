@@ -2,16 +2,16 @@ import type { HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
 import { CopyXIcon, BookmarkPlusIcon, EditIcon } from 'lucide-react';
 
-import type { Folder } from '@/context/bookmark-manager/manager';
-import ButtonMore, { type ButtonMoreAction } from '@/components/UI/ButtonMore';
-import ButtonMoreAnchor from '@/components/UI/ButtonMore/Anchor';
-import { useFolderHandlers } from '@/hooks/use-folder-handlers';
-import { useBookmarkHandlers } from '@/hooks/use-bookmark-handlers';
+import type { Folder } from '#page/services/bookmark-manager';
+import ButtonMore, { type ButtonMoreAction } from '#page/components/UI/ButtonMore';
+import ButtonMoreAnchor from '#page/components/UI/ButtonMore/Anchor';
+import { useFolderHandlers } from '#page/hooks/use-folder-handlers';
+import { useBookmarkHandlers } from '#page/hooks/use-bookmark-handlers';
 
 import BookmarkItem from '../BookmarkItem';
 
 import classes from './index.module.scss';
-import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
+import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
 
 export interface FolderCardProps extends HTMLAttributes<HTMLDivElement> {
   folder: Folder;

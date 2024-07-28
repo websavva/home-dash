@@ -23,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/*": ["./src/page/*"]
+      "#page/*": ["./src/page/*"]
     }
   },
   "include": ["src/page"]

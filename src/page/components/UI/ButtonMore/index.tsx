@@ -7,7 +7,7 @@ import {
 import { EllipsisVerticalIcon } from 'lucide-react';
 import { clsx } from 'clsx';
 
-import { useClickAway } from '@/hooks/use-click-away';
+import { useClickAway } from '#page/hooks/use-click-away';
 
 import { ButtonMoreContext } from './Anchor';
 import classes from './index.module.scss';

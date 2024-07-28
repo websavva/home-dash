@@ -1,8 +1,8 @@
-import { BookmarkManagerContextProvider } from '@/context/bookmark-manager';
+import { BookmarkManagerContextProvider } from '#page/context/bookmark-manager';
 import ModalsContainer from './components/Modals/ModalsContainer';
 
-import Layout from '@/components/Layout';
-import HomePage from '@/components/HomePage';
+import Layout from '#page/components/Layout';
+import HomePage from '#page/components/HomePage';
 
 function App() {
   return (

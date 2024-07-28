@@ -11,7 +11,7 @@ import {
   type BookmarkManager,
   type BookmarkTreeNode,
   getDefaultBookmarkTree,
-} from './manager';
+} from '#page/services/bookmark-manager';
 
 export type BookmarkManagerContextSchema = Pick<
   BookmarkManager,

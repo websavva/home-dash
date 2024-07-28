@@ -2,10 +2,10 @@ import type { HTMLAttributes } from 'react';
 import { clsx } from 'clsx';
 import { LayoutDashboardIcon, CopyPlusIcon } from 'lucide-react';
 
-import { useFolderHandlers } from '@/hooks/use-folder-handlers';
+import { useFolderHandlers } from '#page/hooks/use-folder-handlers';
 
 import classes from './index.module.scss';
-import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
+import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
 
 function Layout({
   children,

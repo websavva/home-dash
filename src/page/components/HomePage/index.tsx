@@ -1,5 +1,5 @@
-import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
-import type { Folder } from '@/context/bookmark-manager/manager';
+import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
+import type { Folder } from '#page/services/bookmark-manager';
 
 import FolderCard from '../FolderCard';
 import FolderCardPlaceholder from '../FolderCard/Placeholder';

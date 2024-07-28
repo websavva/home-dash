@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import type { ModalProps } from '@/context/modals/types';
-import Input from '@/components/UI/Input';
-import Button from '@/components/UI/Button';
-import { useInputControl } from '@/hooks/use-input-control';
+import type { ModalProps } from '#page/context/modals/types';
+import Input from '#page/components/UI/Input';
+import Button from '#page/components/UI/Button';
+import { useInputControl } from '#page/hooks/use-input-control';
 
 import Modal from '../Modal';
 

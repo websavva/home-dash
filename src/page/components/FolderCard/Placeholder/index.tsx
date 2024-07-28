@@ -2,8 +2,8 @@ import type { HTMLAttributes } from 'react';
 import { CopyPlusIcon } from 'lucide-react';
 import { clsx } from 'clsx';
 
-import { useFolderHandlers } from '@/hooks/use-folder-handlers';
-import { useBookmarkManager } from '@/hooks/use-bookmark-manager';
+import { useFolderHandlers } from '#page/hooks/use-folder-handlers';
+import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
 
 import baseClasses from '../index.module.scss';
 
