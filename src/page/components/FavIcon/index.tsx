@@ -11,22 +11,29 @@ export interface FavIconProps {
 
 const isProd = import.meta.env.PROD;
 
+function getFavIconUrl(websiteUrl: string) {
+  if (isProd) {
+    const chromeUrl = new URL(chrome.runtime.getURL('/_favicon/'));
+    
+    chromeUrl.searchParams.set('pageUrl', websiteUrl);
+    chromeUrl.searchParams.set('size', '32');
+
+    return chromeUrl.toString();
+  } else {
+    try {
+      const { origin } = new URL(websiteUrl);
+
+      return `${origin}/favicon.ico`;
+    } catch {
+      return null;
+    }
+  }
+}
+
 function FavIcon({ url, className }: FavIconProps) {
   const [hasLoadingFailed, setHasLoadingFailed] = useState(false);
 
-  let src: string | undefined;
-
-  if (isProd) {
-    src = `chrome://favicon/size/32@1x/${url}`;
-  } else {
-    try {
-      const { origin } = new URL(url);
-
-      src = `${origin}/favicon.ico`;
-    } catch {
-      // continue regardless of error
-    }
-  }
+  const src = getFavIconUrl(url);
 
   useEffect(() => {
     setHasLoadingFailed(false);
