@@ -52,6 +52,9 @@ devDependencies:
   eslint-plugin-react-refresh:
     specifier: ^0.4.7
     version: 0.4.8(eslint@8.57.0)
+  jiti:
+    specifier: ^1.21.6
+    version: 1.21.6
   prettier:
     specifier: ^3.3.3
     version: 3.3.3
@@ -1630,6 +1633,11 @@ packages:
 
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
+    dev: true
+
+  /jiti@1.21.6:
+    resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
+    hasBin: true
     dev: true
 
   /js-tokens@4.0.0:

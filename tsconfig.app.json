@@ -26,5 +26,5 @@
       "#page/*": ["./src/page/*"]
     }
   },
-  "include": ["src/page"]
+  "include": ["src/page", "src/background"]
 }

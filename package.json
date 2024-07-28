@@ -6,6 +6,8 @@
   "scripts": {
     "page:dev": "vite --config=vite.page.config.ts",
     "page:build": "vite --config=vite.page.config.ts build",
+    "background:build": "vite --config=vite.background.config.ts build",
+    "build": "jiti scripts/build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "prettier --write . && eslint . --ext ts,tsx --fix",
     "preview": "vite preview"
@@ -28,6 +30,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "jiti": "^1.21.6",
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^5.2.2",

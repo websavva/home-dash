@@ -44,16 +44,20 @@ export class NativeBookmarkManager extends BookmarkManager {
     }
   }
 
+  public static async ensureTree() {
+    const existingTree = await NativeBookmarkManager.getExistingTree();
+
+    if (existingTree) return existingTree;
+
+    await api.create({
+      title: BOOKMARK_TREE_ID,
+    });
+
+    return (await NativeBookmarkManager.getExistingTree())!;
+  }
+
   public static async create() {
-    let tree = await NativeBookmarkManager.getExistingTree();
-
-    if (!tree) {
-      await api.create({
-        title: BOOKMARK_TREE_ID,
-      });
-
-      tree = (await NativeBookmarkManager.getExistingTree())!;
-    }
+    const tree = await NativeBookmarkManager.ensureTree();
 
     return new NativeBookmarkManager(tree);
   }
@@ -123,10 +127,8 @@ export class NativeBookmarkManager extends BookmarkManager {
   protected onTreeChange = async () => {
     const updatedTree = await NativeBookmarkManager.getExistingTree();
 
-    console.log('Tree has changed ...');
-    console.log({
-      updatedTree,
-    });
+    this.tree = updatedTree!;
+
     this.runOnChangeCallbacks(updatedTree!);
   };
 
