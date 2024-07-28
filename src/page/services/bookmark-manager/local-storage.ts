@@ -8,13 +8,7 @@ import type {
   UpdateBookmarkProps,
 } from './types';
 
-import { BOOKMARK_TREE_ID } from './config';
-
-export const getDefaultBookmarkTree = (): BookmarkTreeNode => ({
-  id: BOOKMARK_TREE_ID,
-  children: [],
-  title: '__ROOT__',
-});
+import { BOOKMARK_TREE_ID, getDefaultBookmarkTree } from './config';
 
 export class LocalStorageBookmarkManager extends BookmarkManager {
   private createBookmarkTree(): BookmarkTreeNode {
