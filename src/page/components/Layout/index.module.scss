@@ -1,7 +1,7 @@
 .layout {
   display: grid;
   grid-template-columns: 7.5rem 1fr;
-  height: 100%;
+  grid-template-rows: 100vh;
 
   &__sidebar {
     height: 100%;
@@ -34,5 +34,9 @@
         }
       }
     }
+  }
+
+  &__main {
+    overflow: auto;
   }
 }

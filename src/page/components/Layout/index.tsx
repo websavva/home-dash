@@ -61,7 +61,7 @@ function Layout({
         })}
       </aside>
 
-      <main>{children}</main>
+      <main className={classes['layout__main']}>{children}</main>
     </div>
   );
 }
