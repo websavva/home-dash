@@ -4,8 +4,9 @@ import { LayoutDashboardIcon, CopyPlusIcon } from 'lucide-react';
 
 import { useFolderHandlers } from '#page/hooks/use-folder-handlers';
 
-import classes from './index.module.scss';
 import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
+
+import classes from './index.module.scss';
 
 function Layout({
   children,

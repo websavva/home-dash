@@ -11,9 +11,10 @@ import { clsx } from 'clsx';
 
 import { useClickAway } from '#page/hooks/use-click-away';
 
+import { getScrollingParent } from '#page/utils/get-scrolling-parent';
+
 import { ButtonMoreContext } from './Anchor';
 import classes from './index.module.scss';
-import { getScrollingParent } from '#page/utils/get-scrolling-parent';
 
 export interface ButtonMoreAction {
   id: string | number;

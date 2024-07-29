@@ -10,10 +10,11 @@ import ButtonMoreAnchor from '#page/components/UI/ButtonMore/Anchor';
 import { useFolderHandlers } from '#page/hooks/use-folder-handlers';
 import { useBookmarkHandlers } from '#page/hooks/use-bookmark-handlers';
 
+import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
+
 import BookmarkItem from '../BookmarkItem';
 
 import classes from './index.module.scss';
-import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
 
 export interface FolderCardProps extends HTMLAttributes<HTMLDivElement> {
   folder: Folder;

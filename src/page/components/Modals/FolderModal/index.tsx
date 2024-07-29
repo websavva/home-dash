@@ -4,10 +4,11 @@ import type { ModalProps } from '#page/context/modals/types';
 import Input from '#page/components/UI/Input';
 import Button from '#page/components/UI/Button';
 
+import { useInputControl } from '#page/hooks/use-input-control';
+
 import Modal from '../Modal';
 
 import classes from './index.module.scss';
-import { useInputControl } from '#page/hooks/use-input-control';
 
 export type FolderModalForm = {
   title: string;
