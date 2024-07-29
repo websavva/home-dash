@@ -14,7 +14,7 @@ const isProd = import.meta.env.PROD;
 function getFavIconUrl(websiteUrl: string) {
   if (isProd) {
     const chromeUrl = new URL(chrome.runtime.getURL('/_favicon/'));
-    
+
     chromeUrl.searchParams.set('pageUrl', websiteUrl);
     chromeUrl.searchParams.set('size', '32');
 

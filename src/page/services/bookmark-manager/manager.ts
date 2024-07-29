@@ -61,8 +61,8 @@ export abstract class BookmarkManager {
 
       if (!this.onChangeCallbacks.length) this.removeGlobalListener();
     };
-  }
-  
+  };
+
   protected runOnChangeCallbacks(updatedTree: BookmarkTreeNode) {
     this.onChangeCallbacks.forEach((callback) => {
       callback(updatedTree);

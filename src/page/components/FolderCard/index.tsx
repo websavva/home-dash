@@ -3,7 +3,9 @@ import { clsx } from 'clsx';
 import { CopyXIcon, BookmarkPlusIcon, EditIcon } from 'lucide-react';
 
 import type { Folder } from '#page/services/bookmark-manager';
-import ButtonMore, { type ButtonMoreAction } from '#page/components/UI/ButtonMore';
+import ButtonMore, {
+  type ButtonMoreAction,
+} from '#page/components/UI/ButtonMore';
 import ButtonMoreAnchor from '#page/components/UI/ButtonMore/Anchor';
 import { useFolderHandlers } from '#page/hooks/use-folder-handlers';
 import { useBookmarkHandlers } from '#page/hooks/use-bookmark-handlers';
