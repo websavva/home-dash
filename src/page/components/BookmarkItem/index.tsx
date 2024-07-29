@@ -4,7 +4,9 @@ import { EditIcon, CopyXIcon } from 'lucide-react';
 import type { Bookmark } from '#page/services/bookmark-manager';
 import FavIcon from '#page/components/FavIcon';
 import ButtonMoreAnchor from '#page/components/UI/ButtonMore/Anchor';
-import ButtonMore, { type ButtonMoreAction } from '#page/components/UI/ButtonMore';
+import ButtonMore, {
+  type ButtonMoreAction,
+} from '#page/components/UI/ButtonMore';
 import { useBookmarkHandlers } from '#page/hooks/use-bookmark-handlers';
 import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
 
@@ -59,11 +61,17 @@ function BookmarkItem({ bookmark, className, ...attrs }: BookmarkItemProps) {
           });
         }}
       >
-        <FavIcon url={url} className={classes['bookmark-item__icon']} />
+        <div className={classes['bookmark-item__left']}>
+          <FavIcon url={url} className={classes['bookmark-item__left__icon']} />
 
-        <span className={classes['bookmark-item__title']}>{title}</span>
+          <span className={classes['bookmark-item__left__title']}>{title}</span>
+        </div>
 
-        <ButtonMore actions={actions} onClick={(e) => e.preventDefault()} />
+        <ButtonMore
+          actions={actions}
+          onClick={(e) => e.preventDefault()}
+          className={classes['bookmark-item__btn']}
+        />
       </a>
     </ButtonMoreAnchor>
   );
