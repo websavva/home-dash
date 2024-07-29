@@ -3,6 +3,11 @@
   grid-template-columns: 7.5rem 1fr;
   grid-template-rows: 100vh;
 
+  @media #{$max-sm} {
+    grid-template-columns: 1fr;
+    grid-template-rows: 6rem 1fr;
+  }
+
   &__sidebar {
     height: 100%;
     background: map.get($theme, 'bg-sidebar');
@@ -10,6 +15,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media #{$max-sm} {
+      flex-direction: row;
+      justify-content: center;
+    }
 
     &__btn {
       @include square-size($size: 2.8rem);
@@ -22,6 +32,11 @@
 
       & + & {
         margin-top: 2rem;
+
+        @media #{$max-sm} {
+          margin-top: 0;
+          margin-left: 1.25rem;
+        }
       }
 
       &--clickable {

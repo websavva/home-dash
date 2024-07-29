@@ -1,10 +1,14 @@
 .bookmark-modal {
-  min-width: 40rem;
   display: flex;
   flex-direction: column;
-
+  width: 30rem;
+  
   > * + * {
     margin-top: 1.5rem;
+  }
+
+  @media #{$min-xs} {
+    width: 40rem;
   }
 
   &__btn {

@@ -4,5 +4,18 @@
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2.5rem;
     padding: 2rem 1.5rem 2rem 3rem;
+    grid-auto-rows: minmax(38rem, 50vh);
+    
+    @media #{$max-lg} {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media #{$max-md} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media #{$max-sm} {
+      grid-template-columns: 1fr;
+    }
   }
 }
