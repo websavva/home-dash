@@ -4,7 +4,7 @@ html {
   background: map.get($theme, 'bg-secondary');
   min-height: 100vh;
   font-size: 62.5%;
-  
+
   @media #{$min-xlg} {
     font-size: 70%;
   }

@@ -5,7 +5,7 @@
     grid-gap: 2.5rem;
     padding: 2rem 1.5rem 2rem 3rem;
     grid-auto-rows: minmax(38rem, 50vh);
-    
+
     @media #{$max-lg} {
       grid-template-columns: repeat(3, 1fr);
     }
