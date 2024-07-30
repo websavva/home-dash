@@ -1,16 +1,68 @@
-import { expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { expect, describe, vi, it } from 'vitest';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 
 import Input from './index';
 
-test('Link changes the state when hovered', async () => {
-  render(<Input disabled id="test-input" />);
+const mockedClasses = vi.hoisted(() => ({
+  input: 'inner-class',
+}));
 
-  const inputElement = screen.getByText((_, element) => {
-    if (!element) return false;
+vi.mock('./index.module.scss', () => ({
+  default: mockedClasses,
+}));
 
-    return element.matches('input[id="test-input"][disabled]');
+const setup = (props: Parameters<typeof Input>[0]) => {
+  const utils = render(<Input {...props} />);
+
+  const input = utils.container.querySelector('input')!;
+
+  return {
+    input,
+    ...utils,
+  };
+};
+
+describe('Input', async () => {
+  it('should have outer and inner classes', () => {
+    const { input } = setup({
+      className: 'outer-class',
+    });
+
+    expect(input).toBeInstanceOf(HTMLInputElement);
+    expect(input).toHaveClass('outer-class');
+    expect(input).toHaveClass('inner-class');
   });
 
-  expect(inputElement).toBeInstanceOf(HTMLInputElement);
+  it('should attach attributes', () => {
+    const { input } = setup({
+      placeholder: 'enter',
+      disabled: true,
+    });
+
+    expect(input).toBeDisabled();
+    expect(input).toHaveAttribute('placeholder', 'enter');
+  });
+
+  it('should be interactive', async () => {
+    const onChange = vi.fn((e) => {
+      return e.target.value;
+    });
+
+    const user = userEvent.setup();
+
+    const { input } = setup({
+      onChange,
+      value: '',
+    });
+
+    const newValue = 'changed-value';
+
+    await user.click(input);
+
+    await user.paste(newValue);
+
+    expect(onChange).toHaveBeenCalledOnce();
+    expect(onChange).toReturnWith(newValue);
+  });
 });
