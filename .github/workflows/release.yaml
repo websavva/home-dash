@@ -1,4 +1,4 @@
-name: Create release and publish to NPM
+name: Create release and publish to Chrome Webstore
 
 on:
   push:
