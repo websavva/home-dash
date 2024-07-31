@@ -7,5 +7,8 @@
       "path": "src/public/manifest.json",
       "jsonpath": "$..version"
     }
-  ]
+  ],
+  "packages": {
+    ".": {}
+  }
 }
