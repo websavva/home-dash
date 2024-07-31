@@ -17,3 +17,26 @@ jobs:
         id: release
         with:
           config-file: release-please-config.json
+
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Prepare workflow
+        uses: ./.github/actions/prepare-workflow
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Building extension
+        if: ${{ steps.release.outputs.release_created }}
+        run: pnpm build
+
+      - name: Install zip utility
+        if: ${{ steps.release.outputs.release_created }}
+        run: apt-get update && apt-get install -y zip
+
+      - name: Archive dist
+        if: ${{ steps.release.outputs.release_created }}
+        run: mkdir -p /tmp/${{ github.repository }}/${{ github.sha }} && zip -r /tmp/${{ github.repository }}/${{ github.sha }}/home-dash.zip dist
+
+      - name: Get dist size
+        if: ${{ steps.release.outputs.release_created }}
+        run: du -h /tmp/${{ github.repository }}/${{ github.sha }}/home-dash.zip
