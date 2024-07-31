@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "engines": {
+    "node": "20.x",
+    "pnpm": "9.6.0"
+  },
+  "packageManager": "pnpm@9.6.0",
   "scripts": {
     "page:dev": "vite --config=vite.page.config.ts",
     "page:build": "vite --config=vite.page.config.ts build",
