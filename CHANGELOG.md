@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/websavva/home-dash/compare/home-dash-v0.1.0...home-dash-v0.1.1) (2024-08-01)
+
+
+### Bug Fixes
+
+* **ci/cd:** sudo is used to fix apt-get permission error ([9a42877](https://github.com/websavva/home-dash/commit/9a42877c0f22cc79c10a2e0503c6b0ebfef3fe61))
+
 ## [0.1.0](https://github.com/websavva/home-dash/compare/home-dash-v0.0.2...home-dash-v0.1.0) (2024-07-31)
 
 
