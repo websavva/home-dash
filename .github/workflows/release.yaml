@@ -31,7 +31,7 @@ jobs:
 
       - name: Install zip utility
         if: ${{ steps.release.outputs.release_created }}
-        run: apt-get update && apt-get install -y zip
+        run: sudo apt-get update && sudo apt-get install -y zip
 
       - name: Archive dist
         if: ${{ steps.release.outputs.release_created }}
