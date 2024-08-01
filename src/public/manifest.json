@@ -4,7 +4,7 @@
   "short_name": "HomeDash",
   "author": "WebSavva",
   "description": "A replacement for Google Chrome's 'new tab' page that lets you easily access your favorite bookmarks in structured way",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icons": {
     "16": "icon16.png",
     "32": "icon32.png",
