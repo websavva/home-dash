@@ -24,13 +24,13 @@ describe('useInputControl hook', () => {
     expect(emailControl.value).toBe('john@example.com');
   });
 
-  it('should update form state on change', () => {
+  it('should update form state on change', async () => {
     const { result } = renderHook(() => useTestHook());
 
     const nameControl = result.current.inputControl('name');
     const emailControl = result.current.inputControl('email');
 
-    act(() => {
+    await act(() => {
       // @ts-expect-error should be InputEvent
       nameControl.onChange({ target: { value: 'Jane' } });
       // @ts-expect-error should be InputEvent
@@ -41,12 +41,12 @@ describe('useInputControl hook', () => {
     expect(result.current.form.email).toBe('jane@example.com');
   });
 
-  it('should not affect other fields when one field changes', () => {
+  it('should not affect other fields when one field changes', async () => {
     const { result } = renderHook(() => useTestHook());
 
     const nameControl = result.current.inputControl('name');
 
-    act(() => {
+    await act(() => {
       // @ts-expect-error should be InputEvent
       nameControl.onChange({ target: { value: 'Jane' } });
     });
