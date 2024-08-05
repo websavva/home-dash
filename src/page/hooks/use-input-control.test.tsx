@@ -1,8 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 import { renderHook, act } from '@testing-library/react';
 
 import { useInputControl } from './use-input-control'; // Adjust the path accordingly
+
+const createInputEvent = (value: string) => {
+  return {
+    target: {
+      value,
+    },
+  } as unknown as ChangeEvent<HTMLInputElement>;
+};
 
 describe('useInputControl hook', () => {
   function useTestHook() {
@@ -31,10 +39,8 @@ describe('useInputControl hook', () => {
     const emailControl = result.current.inputControl('email');
 
     await act(() => {
-      // @ts-expect-error should be InputEvent
-      nameControl.onChange({ target: { value: 'Jane' } });
-      // @ts-expect-error should be InputEvent
-      emailControl.onChange({ target: { value: 'jane@example.com' } });
+      nameControl.onChange(createInputEvent('Jane'));
+      emailControl.onChange(createInputEvent('jane@example.com'));
     });
 
     expect(result.current.form.name).toBe('Jane');
@@ -47,8 +53,7 @@ describe('useInputControl hook', () => {
     const nameControl = result.current.inputControl('name');
 
     await act(() => {
-      // @ts-expect-error should be InputEvent
-      nameControl.onChange({ target: { value: 'Jane' } });
+      nameControl.onChange(createInputEvent('Jane'));
     });
 
     expect(result.current.form.name).toBe('Jane');
