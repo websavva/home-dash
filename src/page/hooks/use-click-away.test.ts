@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import { renderHook } from '@testing-library/react';
 
-import { useClickAway } from './use-click-away'; // Adjust the path accordingly
+import { useClickAway } from './use-click-away';
 
 describe('useClickAway hook', () => {
   let callback: ReturnType<(typeof vi)['fn']>;

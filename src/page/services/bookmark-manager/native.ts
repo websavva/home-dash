@@ -9,7 +9,7 @@ import type {
   UpdateBookmarkProps,
 } from './types';
 
-const api = chrome?.bookmarks;
+const api = window.chrome?.bookmarks;
 
 export class NativeBookmarkManager extends BookmarkManager {
   constructor(tree: BookmarkTreeNode) {
