@@ -23,16 +23,13 @@ export const useFolderHandlers = () => {
     await onSuccess(form.title);
   };
 
-  const onAdd = () => openFolderModal((title) => title && addFolder(title));
+  const onAdd = () => openFolderModal((title) => addFolder(title));
 
   const onEdit = (folder: Folder) =>
-    openFolderModal(
-      (newTitle) => newTitle.trim() && updateFolder(folder.id, newTitle),
-      {
-        buttonLabel: 'Save',
-        initialTitle: folder.title,
-      },
-    );
+    openFolderModal((newTitle) => updateFolder(folder.id, newTitle), {
+      buttonLabel: 'Save',
+      initialTitle: folder.title,
+    });
 
   const onRemove = (folder: Folder) => removeFolder(folder.id);
 
