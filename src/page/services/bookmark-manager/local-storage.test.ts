@@ -200,4 +200,33 @@ describe('LocalStorageBookmarkManager', () => {
     expect(getFolderById(folder1.id)).not.toContainEqual(bookmark);
     expect(getFolderById(folder2.id)!.children![0]).toBe(bookmark);
   });
+
+  it('should call onChange callback', async () => {
+    const callback = vi.fn();
+
+    const removeCallback = bookmarkManager.onChange(callback);
+
+    // @ts-expect-error private property access
+    expect(bookmarkManager.isGlobalListenerSetUp).toBe(true);
+
+    const folder = await bookmarkManager.addFolder('Folder 1');
+
+    const expectedTree = {
+      ...getDefaultBookmarkTree(),
+      children: [folder],
+    };
+
+    expect(callback).toHaveBeenCalledOnce();
+    expect(callback).toHaveBeenCalledWith(expectedTree);
+
+    callback.mockClear();
+    removeCallback();
+
+    // @ts-expect-error private property access
+    expect(bookmarkManager.isGlobalListenerSetUp).toBe(false);
+
+    await bookmarkManager.addFolder('Folder 2');
+
+    expect(callback).not.toHaveBeenCalled();
+  });
 });
