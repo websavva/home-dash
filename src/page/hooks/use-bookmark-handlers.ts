@@ -3,8 +3,8 @@ import { useModals } from '#page/hooks/use-modals';
 import type { Bookmark } from '#page/services/bookmark-manager';
 
 import BookmarkModal, {
-  BookmarkModalExtraProps,
-  BookmarkModalForm,
+  type BookmarkModalExtraProps,
+  type BookmarkModalForm,
 } from '#page/components/Modals/BookmarkModal';
 import { isFormValid } from '#page/utils/validators';
 
