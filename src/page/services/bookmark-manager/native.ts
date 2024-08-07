@@ -139,7 +139,7 @@ export class NativeBookmarkManager extends BookmarkManager {
       this.api[eventName].addListener(this.onTreeChange);
     });
 
-    this.isGlobalListenerSetUp = false;
+    this.isGlobalListenerSetUp = true;
   };
 
   public removeGlobalListener = () => {
