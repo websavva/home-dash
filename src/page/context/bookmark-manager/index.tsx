@@ -64,6 +64,7 @@ export const BookmarkManagerContextProvider = ({
         setBookmarkTree(updatedTree);
       });
 
+
       bookmarkManagerRef.current = bookmarkManager;
 
       setBookmarkTree(bookmarkManager.tree);
