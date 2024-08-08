@@ -10,8 +10,9 @@
 
   &__left {
     flex: 1;
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: auto 1fr;
 
     &__icon {
       @include square-size($size: 1.125em);
