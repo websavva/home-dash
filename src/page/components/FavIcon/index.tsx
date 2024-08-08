@@ -9,10 +9,8 @@ export interface FavIconProps {
   url: string;
 }
 
-const isProd = import.meta.env.PROD;
-
 function getFavIconUrl(websiteUrl: string) {
-  if (isProd) {
+  if (import.meta.env.PROD) {
     const chromeUrl = new URL(chrome.runtime.getURL('/_favicon/'));
 
     chromeUrl.searchParams.set('pageUrl', websiteUrl);
