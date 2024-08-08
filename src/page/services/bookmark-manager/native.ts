@@ -9,8 +9,6 @@ import type {
   UpdateBookmarkProps,
 } from './types';
 
-const api = window.chrome?.bookmarks;
-
 export class NativeBookmarkManager extends BookmarkManager {
   constructor(tree: BookmarkTreeNode) {
     super();
@@ -18,7 +16,7 @@ export class NativeBookmarkManager extends BookmarkManager {
     this.tree = tree;
   }
 
-  protected api = api;
+  protected api = chrome.bookmarks;
 
   private static eventNames = [
     'onChanged',
@@ -29,14 +27,16 @@ export class NativeBookmarkManager extends BookmarkManager {
   ] as const;
 
   public static async getExistingTree() {
-    const foundExistingTrees = await api.search({
+    const foundExistingTrees = await chrome.bookmarks.search({
       title: BOOKMARK_TREE_ID,
     });
 
     const doesTreeExist = foundExistingTrees.length > 0;
 
     if (doesTreeExist) {
-      const [fullExistingTree] = await api.getSubTree(foundExistingTrees[0].id);
+      const [fullExistingTree] = await chrome.bookmarks.getSubTree(
+        foundExistingTrees[0].id,
+      );
 
       return fullExistingTree!;
     } else {
@@ -49,7 +49,7 @@ export class NativeBookmarkManager extends BookmarkManager {
 
     if (existingTree) return existingTree;
 
-    await api.create({
+    await chrome.bookmarks.create({
       title: BOOKMARK_TREE_ID,
     });
 
