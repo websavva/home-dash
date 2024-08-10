@@ -71,6 +71,7 @@ function BookmarkItem({ bookmark, className, ...attrs }: BookmarkItemProps) {
           actions={actions}
           onClick={(e) => e.preventDefault()}
           className={classes['bookmark-item__btn']}
+          data-testid="button-more"
         />
       </a>
     </ButtonMoreAnchor>
