@@ -91,7 +91,12 @@ function FolderCard({
       }}
     >
       <div className={classes['folder-card__head']}>
-        <div className={classes['folder-card__head__title']}>{title}</div>
+        <div
+          className={classes['folder-card__head__title']}
+          data-testid="folder-title"
+        >
+          {title}
+        </div>
 
         <ButtonMore
           actions={actions}
