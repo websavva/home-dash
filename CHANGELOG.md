@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/websavva/home-dash/compare/home-dash-v0.1.1...home-dash-v0.1.2) (2024-08-10)
+
+
+### Bug Fixes
+
+* ActionsList are placed correctly now as offsetHeight of scrolling parent is used instead of scrollHeight ([a8cbc88](https://github.com/websavva/home-dash/commit/a8cbc88fc8ee7c342524a6993a4a164ec51d8c75))
+* **ci/cd:** pnpm version was fixed in ci/cd ([23fe506](https://github.com/websavva/home-dash/commit/23fe506a6e7a95ddc42829233e4d354c01fa594c))
+
 ## [0.1.1](https://github.com/websavva/home-dash/compare/home-dash-v0.1.0...home-dash-v0.1.1) (2024-08-01)
 
 
