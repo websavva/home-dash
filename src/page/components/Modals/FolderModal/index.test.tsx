@@ -16,16 +16,18 @@ describe('FolderModal Component', () => {
     vi.clearAllMocks();
   });
 
-  it('renders the modal with the provided initial title', () => {
+  it('renders the modal with the provided initial title and button label', () => {
     render(
       <FolderModal
         submit={mockSubmit}
         close={mockClose}
         initialTitle="Test Title"
+        buttonLabel="Save"
       />,
     );
 
     expect(screen.getByTestId('input')).toHaveValue('Test Title');
+    expect(screen.getByTestId('button')).toHaveTextContent('Save');
   });
 
   it('renders the modal with default title and button label', () => {

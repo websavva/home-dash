@@ -43,12 +43,14 @@ function BookmarkModal({
 
           submit(form);
         }}
+        data-testid="form"
       >
         <Input
           {...inputControl('title')}
           placeholder="Enter title..."
           type="text"
           required
+          data-testid="title-input"
         />
 
         <Input
@@ -56,9 +58,14 @@ function BookmarkModal({
           placeholder="Enter URL..."
           type="url"
           required
+          data-testid="url-input"
         />
 
-        <Button type="submit" className={classes['bookmark-modal__btn']}>
+        <Button
+          type="submit"
+          className={classes['bookmark-modal__btn']}
+          data-testid="button"
+        >
           {buttonLabel}
         </Button>
       </form>
