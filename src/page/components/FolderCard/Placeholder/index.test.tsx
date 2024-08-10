@@ -3,23 +3,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import { useFolderHandlers } from '#page/hooks/use-folder-handlers';
 import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
+import { mockedClasses } from '#page/utils/test/mocked-classes';
 
 import FolderCardPlaceholder from './index';
 
 vi.mock('#page/hooks/use-folder-handlers');
 vi.mock('#page/hooks/use-bookmark-manager');
-
-const mockedClasses = vi.hoisted(
-  () =>
-    new Proxy(
-      {},
-      {
-        get(_, className) {
-          return className;
-        },
-      },
-    ),
-);
 
 vi.mock('./index.module.scss', () => ({
   default: mockedClasses,
@@ -46,7 +35,7 @@ describe('FolderCardPlaceholder Component', () => {
 
     render(<FolderCardPlaceholder />);
 
-    const placeholderElement = screen.getByRole('button');
+    const placeholderElement = screen.getByTestId('folder-card-placeholder');
     expect(placeholderElement).toBeInTheDocument();
     expect(placeholderElement).toHaveClass('folder-card');
     expect(placeholderElement).toHaveClass('folder-card-placeholder');
@@ -59,7 +48,7 @@ describe('FolderCardPlaceholder Component', () => {
 
     render(<FolderCardPlaceholder className="custom-class" />);
 
-    const placeholderElement = screen.getByRole('button');
+    const placeholderElement = screen.getByTestId('folder-card-placeholder');
     expect(placeholderElement).toHaveClass('custom-class');
   });
 
@@ -70,7 +59,7 @@ describe('FolderCardPlaceholder Component', () => {
 
     render(<FolderCardPlaceholder />);
 
-    const placeholderElement = screen.getByRole('button');
+    const placeholderElement = screen.getByTestId('folder-card-placeholder');
     fireEvent.click(placeholderElement);
 
     expect(mockOnAdd).toHaveBeenCalled();
@@ -83,7 +72,7 @@ describe('FolderCardPlaceholder Component', () => {
 
     render(<FolderCardPlaceholder />);
 
-    const placeholderElement = screen.getByRole('button');
+    const placeholderElement = screen.getByTestId('folder-card-placeholder');
     fireEvent.click(placeholderElement);
 
     expect(mockOnAdd).not.toHaveBeenCalled();

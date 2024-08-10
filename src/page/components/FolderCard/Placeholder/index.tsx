@@ -16,12 +16,12 @@ function FolderCardPlaceholder(props: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       {...props}
-      role="button"
       className={clsx(
         baseClasses['folder-card'],
         classes['folder-card-placeholder'],
         props.className,
       )}
+      data-testid="folder-card-placeholder"
       onClick={() => isBookmarkManagerLoaded && onAdd()}
     >
       <CopyPlusIcon />

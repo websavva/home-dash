@@ -48,6 +48,7 @@
     "sass": "^1.77.8",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
+    "vite-plugin-react-remove-attributes": "^1.0.3",
     "vitest": "^2.0.4"
   }
 }

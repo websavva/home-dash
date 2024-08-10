@@ -1,5 +1,6 @@
 import { mergeConfig, defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import _VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes';
 
 import { baseConfig, resolvePath } from './vite.base.config';
 
@@ -14,10 +15,20 @@ const mediaQueryDeclarations = Object.entries(breakpoints)
   ])
   .flat();
 
+const VitePluginReactRemoveAttributes = ((
+  _VitePluginReactRemoveAttributes as any
+).default ||
+  _VitePluginReactRemoveAttributes) as typeof _VitePluginReactRemoveAttributes;
+
 export default mergeConfig(
   baseConfig,
   defineConfig({
-    plugins: [react()],
+    plugins: [
+      react(),
+      VitePluginReactRemoveAttributes({
+        attributes: ['data-testid'],
+      }),
+    ],
 
     root: resolvePath('src/page'),
 

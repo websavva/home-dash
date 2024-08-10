@@ -84,6 +84,9 @@ importers:
       vite:
         specifier: ^5.3.1
         version: 5.3.5(@types/node@20.14.13)(sass@1.77.8)
+      vite-plugin-react-remove-attributes:
+        specifier: ^1.0.3
+        version: 1.0.3(vite@5.3.5(@types/node@20.14.13)(sass@1.77.8))
       vitest:
         specifier: ^2.0.4
         version: 2.0.5(@types/node@20.14.13)(jsdom@24.1.1)(sass@1.77.8)
@@ -1889,6 +1892,11 @@ packages:
     resolution: {integrity: sha512-LdsW4pxj0Ot69FAoXZ1yTnA9bjGohr2yNBU7QKRxpz8ITSkhuDl6h3zS/tvgz4qrNjeRnvrWeXQ8ZF7Um4W00Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
+
+  vite-plugin-react-remove-attributes@1.0.3:
+    resolution: {integrity: sha512-f+ox+GFeqyBHzOe94Tcf1knFXEYWMhOGH04glIZRoXoIXQJD23Z1KFgQ7/JwOoLydsvQTlGzUJ/BpLeL7lh2LQ==}
+    peerDependencies:
+      vite: ^2.4.4
 
   vite@5.3.5:
     resolution: {integrity: sha512-MdjglKR6AQXQb9JGiS7Rc2wC6uMjcm7Go/NHNO63EwiJXfuk9PgqiP/n5IDJCziMkfw9n4Ubp7lttNwz+8ZVKA==}
@@ -3943,6 +3951,10 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  vite-plugin-react-remove-attributes@1.0.3(vite@5.3.5(@types/node@20.14.13)(sass@1.77.8)):
+    dependencies:
+      vite: 5.3.5(@types/node@20.14.13)(sass@1.77.8)
 
   vite@5.3.5(@types/node@20.14.13)(sass@1.77.8):
     dependencies:
