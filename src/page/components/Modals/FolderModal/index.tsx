@@ -40,6 +40,7 @@ function FolderModal({
 
           submit(form);
         }}
+        data-testid="form"
       >
         <Input
           {...inputControl('title')}
@@ -47,9 +48,14 @@ function FolderModal({
           type="text"
           required
           minLength={1}
+          data-testid="input"
         />
 
-        <Button type="submit" className={classes['folder-modal__btn']}>
+        <Button
+          type="submit"
+          className={classes['folder-modal__btn']}
+          data-testid="button"
+        >
           {buttonLabel}
         </Button>
       </form>
