@@ -45,6 +45,7 @@ function Layout({
             return (
               <button
                 key={id}
+                data-testid={id}
                 className={className}
                 onClick={onClick}
                 disabled={disabled}
@@ -54,7 +55,7 @@ function Layout({
             );
           } else {
             return (
-              <div key={id} className={className}>
+              <div key={id} data-testid={id} className={className}>
                 <Icon />
               </div>
             );
