@@ -3,9 +3,9 @@ import { PropsWithChildren, useContext } from 'react';
 import {
   ModalsContextProvider,
   ModalsContext,
-} from '../../../context/modals/Provider';
+} from '#page/context/modals/Provider';
 
-function ModalsContainerList() {
+export function ModalsContainerList() {
   const { openedModals, remove } = useContext(ModalsContext);
 
   return (
