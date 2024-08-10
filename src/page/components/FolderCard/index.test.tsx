@@ -20,8 +20,10 @@ vi.mock('#page/hooks/use-folder-handlers');
 vi.mock('#page/hooks/use-bookmark-handlers');
 vi.mock('#page/hooks/use-bookmark-manager');
 vi.mock('../BookmarkItem', () => ({
-    default: ({bookmark}:{bookmark: Bookmark} ) => <div data-testid={`bookmark-${bookmark.id}`}>{bookmark.title}</div>
-}))
+  default: ({ bookmark }: { bookmark: Bookmark }) => (
+    <div data-testid={`bookmark-${bookmark.id}`}>{bookmark.title}</div>
+  ),
+}));
 
 describe('FolderCard Component', () => {
   const mockMoveFolder = vi.fn();
@@ -61,7 +63,9 @@ describe('FolderCard Component', () => {
   it('renders the folder card with title and bookmarks', () => {
     render(<FolderCard folder={folder} />);
 
-    expect(screen.queryByTestId('folder-title')).toHaveTextContent('Test Folder');
+    expect(screen.queryByTestId('folder-title')).toHaveTextContent(
+      'Test Folder',
+    );
     expect(screen.queryByTestId('bookmark-b1')).toHaveTextContent('Bookmark 1');
     expect(screen.queryByTestId('bookmark-b2')).toHaveTextContent('Bookmark 2');
   });

@@ -1,9 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import {
-  render,
-  screen,
-  fireEvent,
-} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { TextCursorIcon } from 'lucide-react';
 
 import { mockedClasses } from '#page/utils/test/mocked-classes';

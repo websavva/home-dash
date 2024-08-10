@@ -38,7 +38,7 @@ describe('Input', async () => {
     const { button } = setup({
       type: 'submit',
       disabled: true,
-      children: 'Submit'
+      children: 'Submit',
     });
 
     expect(button).toBeDisabled();
