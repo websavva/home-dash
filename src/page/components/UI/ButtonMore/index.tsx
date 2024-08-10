@@ -81,8 +81,13 @@ function ButtonMore({ actions, className, ...attrs }: ButtonMoreProps) {
       ref={rootElementRef}
       className={clsx(classes['button-more'], buttonClassName, className)}
       data-button-more={isOpened ? 'opened' : 'closed'}
+      data-testid="button-more"
     >
-      <button className={classes['button-more__activator']} onClick={onToggle}>
+      <button
+        className={classes['button-more__activator']}
+        data-testid="button-more-activator"
+        onClick={onToggle}
+      >
         <EllipsisVerticalIcon />
       </button>
 
@@ -91,12 +96,14 @@ function ButtonMore({ actions, className, ...attrs }: ButtonMoreProps) {
           className={clsx(classes['button-more__actions'], {
             [classes[`button-more__actions--${positionType}`]]: positionType,
           })}
+          data-test-id="button-more-actions"
           ref={onActionsListMount}
         >
           {actions.map(({ id, onClick, label, Icon }) => {
             return (
               <div
                 key={id}
+                data-testid={id}
                 className={classes['button-more__actions__item']}
                 onClick={() => {
                   onClick();
