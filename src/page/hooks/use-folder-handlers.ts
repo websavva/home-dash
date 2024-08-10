@@ -2,9 +2,10 @@ import { useBookmarkManager } from '#page/hooks/use-bookmark-manager';
 import { useModals } from '#page/hooks/use-modals';
 import type { Folder } from '#page/services/bookmark-manager';
 
-import FolderModal, {
+import type {
   FolderModalExtraProps,
 } from '#page/components/Modals/FolderModal';
+import FolderModal from '#page/components/Modals/FolderModal';
 import { isFormValid } from '#page/utils/validators';
 
 export const useFolderHandlers = () => {

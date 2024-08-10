@@ -15,6 +15,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/consistent-type-imports': 'error',
 
     'import/order': [
       'error',

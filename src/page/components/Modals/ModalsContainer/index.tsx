@@ -1,4 +1,5 @@
-import { PropsWithChildren, useContext } from 'react';
+import type { PropsWithChildren} from 'react';
+import { useContext } from 'react';
 
 import {
   ModalsContextProvider,
