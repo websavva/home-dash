@@ -60,7 +60,7 @@ function ButtonMore({ actions, className, ...attrs }: ButtonMoreProps) {
 
     const { offsetHeight: actionsListHeight } = actionsList;
 
-    const { scrollHeight: scrollingParentFullHeight } = scrollingParent;
+    const { offsetHeight: scrollingParentFullHeight } = scrollingParent;
 
     const hasLeftSpaceBelow =
       actionsListHeight + rootElement.offsetHeight + relativeTopHeight <
