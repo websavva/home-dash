@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/websavva/home-dash/compare/home-dash-v0.1.2...home-dash-v1.0.0) (2024-08-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **service-worker:** All event listeners are regitered synchronously in service worker
+
+### Bug Fixes
+
+* **service-worker:** All event listeners are regitered synchronously in service worker ([a7bba18](https://github.com/websavva/home-dash/commit/a7bba18c17b91aba8286b570b73ebf8bc64cd8f8))
+
 ## [0.1.2](https://github.com/websavva/home-dash/compare/home-dash-v0.1.1...home-dash-v0.1.2) (2024-08-10)
 
 
