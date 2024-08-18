@@ -178,7 +178,6 @@ describe('NativeBookmarkManager', async () => {
     const mockCallback = vi.fn();
     bookmarkManager.onChange(mockCallback);
 
-    // @ts-expect-error accessing private property
     await bookmarkManager.onTreeChange();
 
     expect(mockCallback).toHaveBeenCalledWith(mockTree);
