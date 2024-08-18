@@ -18,7 +18,7 @@ export class NativeBookmarkManager extends BookmarkManager {
 
   protected api = chrome.bookmarks;
 
-  private static eventNames = [
+  public static eventNames = [
     'onChanged',
     'onChildrenReordered',
     'onCreated',
@@ -124,7 +124,7 @@ export class NativeBookmarkManager extends BookmarkManager {
     return this.api.update(bookmarkId, bookmarkProps).then(() => true);
   };
 
-  protected onTreeChange = async () => {
+  public onTreeChange = async () => {
     const updatedTree = await NativeBookmarkManager.getExistingTree();
 
     this.tree = updatedTree!;
