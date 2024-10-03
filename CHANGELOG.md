@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/websavva/home-dash/compare/home-dash-v1.0.0...home-dash-v1.1.0) (2024-10-03)
+
+
+### Features
+
+* CardPlaceholder is not shown when Manager is not loaded ([7a6b99e](https://github.com/websavva/home-dash/commit/7a6b99e9b4c17bf0b493c90b7a2bacf3fca3a27d))
+
 ## [1.0.0](https://github.com/websavva/home-dash/compare/home-dash-v0.1.2...home-dash-v1.0.0) (2024-08-18)
 
 
