@@ -42,10 +42,6 @@ describe('FolderCardPlaceholder Component', () => {
   });
 
   it('applies additional classNames passed via props', () => {
-    (useBookmarkManager as Mock).mockReturnValue({
-      isLoaded: true,
-    });
-
     render(<FolderCardPlaceholder className="custom-class" />);
 
     const placeholderElement = screen.getByTestId('folder-card-placeholder');
@@ -53,28 +49,11 @@ describe('FolderCardPlaceholder Component', () => {
   });
 
   it('calls onAdd when clicked and bookmark manager is loaded', () => {
-    (useBookmarkManager as Mock).mockReturnValue({
-      isLoaded: true,
-    });
-
     render(<FolderCardPlaceholder />);
 
     const placeholderElement = screen.getByTestId('folder-card-placeholder');
     fireEvent.click(placeholderElement);
 
     expect(mockOnAdd).toHaveBeenCalled();
-  });
-
-  it('does not call onAdd when clicked and bookmark manager is not loaded', () => {
-    (useBookmarkManager as Mock).mockReturnValue({
-      isLoaded: false,
-    });
-
-    render(<FolderCardPlaceholder />);
-
-    const placeholderElement = screen.getByTestId('folder-card-placeholder');
-    fireEvent.click(placeholderElement);
-
-    expect(mockOnAdd).not.toHaveBeenCalled();
   });
 });

@@ -28,6 +28,7 @@ describe('HomePage Component', () => {
 
     (useBookmarkManager as Mock).mockReturnValue({
       tree: { children: mockFolders },
+      isLoaded: true,
     });
 
     render(<HomePage />);
@@ -40,7 +41,7 @@ describe('HomePage Component', () => {
       );
     });
 
-    expect(FolderCardPlaceholder).toHaveBeenCalledTimes(1);
+    expect(FolderCardPlaceholder).toHaveBeenCalledOnce();
   });
 
   it('renders only the FolderCardPlaceholder when no folders are present', () => {
@@ -51,7 +52,7 @@ describe('HomePage Component', () => {
     render(<HomePage />);
 
     expect(FolderCard).not.toHaveBeenCalled();
-    expect(FolderCardPlaceholder).toHaveBeenCalledTimes(1);
+    expect(FolderCardPlaceholder).not.toHaveBeenCalled();
   });
 
   it('handles undefined children by rendering only the FolderCardPlaceholder', () => {
@@ -62,7 +63,7 @@ describe('HomePage Component', () => {
     render(<HomePage />);
 
     expect(FolderCard).not.toHaveBeenCalled();
-    expect(FolderCardPlaceholder).toHaveBeenCalledTimes(1);
+    expect(FolderCardPlaceholder).not.toHaveBeenCalled();
   });
 
   it('renders correct DOM structure with appropriate classes', () => {
@@ -73,6 +74,7 @@ describe('HomePage Component', () => {
 
     (useBookmarkManager as Mock).mockReturnValue({
       tree: { children: mockFolders },
+      isLoaded: true,
     });
 
     (FolderCard as Mock).mockImplementation(() => <article>Article</article>);
