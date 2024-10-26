@@ -2,7 +2,7 @@
   "name": "@websavva/home-dash",
   "description": "Chrome extension used as a home page with organized user's bookmarks",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "engines": {
     "node": "20.x",
