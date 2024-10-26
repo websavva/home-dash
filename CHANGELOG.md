@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/websavva/home-dash/compare/home-dash-v1.1.0...home-dash-v1.1.1) (2024-10-26)
+
+
+### Bug Fixes
+
+* **BookmarkItem:** line-height was set back to default value to prevent cutting of letters ([d31e5a4](https://github.com/websavva/home-dash/commit/d31e5a43fce3270ea20cad61870dd026d8cdf8cc))
+
 ## [1.1.0](https://github.com/websavva/home-dash/compare/home-dash-v1.0.0...home-dash-v1.1.0) (2024-10-03)
 
 
