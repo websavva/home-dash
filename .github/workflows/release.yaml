@@ -43,6 +43,7 @@ jobs:
         run: du -h /tmp/${{ github.repository }}/${{ github.sha }}/home-dash.zip
 
       - name: Publish to Chrome Store
+        if: ${{ steps.release.outputs.release_created }}
         uses: wdzeng/chrome-extension@v1
         with:
           extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
