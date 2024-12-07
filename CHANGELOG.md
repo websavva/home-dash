@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/websavva/home-dash/compare/home-dash-v1.1.1...home-dash-v1.2.0) (2024-12-07)
+
+
+### Features
+
+* **cd:** Automatic WebChromeStore deployment was implemented ([bfc123d](https://github.com/websavva/home-dash/commit/bfc123d8430e6f3593284d33ea4216d5f56f7dc1))
+
+
+### Bug Fixes
+
+* **cd:** Deployment happens only on release ([8fd022b](https://github.com/websavva/home-dash/commit/8fd022b06b81cb8c4fdc2a96a5215229b3daebc4))
+
 ## [1.1.1](https://github.com/websavva/home-dash/compare/home-dash-v1.1.0...home-dash-v1.1.1) (2024-10-26)
 
 
