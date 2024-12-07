@@ -1,5 +1,5 @@
 <div align="center">
-  <img width=250 src="https://github.com/websavva/home-dash/blob/master/src/public/icon128.png" />
+  <img width="128" src="https://github.com/websavva/home-dash/blob/master/src/public/icon128.png" />
   <h1>HomeDash</h1>
 </div>
 
