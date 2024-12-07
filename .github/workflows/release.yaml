@@ -42,13 +42,11 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         run: du -h /tmp/${{ github.repository }}/${{ github.sha }}/home-dash.zip
 
-      # TODO after registration of Developer profile in Chrome Store
-      # - name: Publish to Chrome Store
-      #   uses: wdzeng/chrome-extension@v1
-      #   with:
-      #     extension-id: home-dash
-      #     zip-path: /tmp/${{ github.repository }}/${{ github.sha }}/home-dash.zip
-      #     client-id: ${{ secrets.CHROME_CLIENT_ID }}
-      #     client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
-      #     refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
-      #     check-credentials-only: true
+      - name: Publish to Chrome Store
+        uses: wdzeng/chrome-extension@v1
+        with:
+          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
+          zip-path: /tmp/${{ github.repository }}/${{ github.sha }}/home-dash.zip
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
